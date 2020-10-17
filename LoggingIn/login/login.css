@@ -1,0 +1,40 @@
+body {
+  background-image: urL("./images/runner.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vmax;
+  background-position: center;
+}
+
+.form {
+  background-color: aliceblue;
+  width: 40vmin;
+  height: 60vmin;
+  opacity: 90%;
+  margin-left: calc((100vw - 40vmin) / 2);
+  margin-top: calc((100vh - 60vmin) / 2);
+  margin-right: calc((100vw - 40vmin) / 2);
+  margin-bottom: calc((100vh - 60vmin) / 2);
+  border-radius: 10px;
+}
+
+.text {
+  text-align: center;
+  font-size: 5vmin;
+  height: 10vmin;
+}
+
+.center {
+  width: 30vmin;
+  margin-left: 5vmin;
+  margin-right: 5vmin;
+}
+
+#textArea {
+  position: relative;
+  height: 50vmin;
+  margin-top: calc((100vh - 60vmin) / 2 + 10vmin);
+}
+
+input {
+  border-radius: 5px;
+}
