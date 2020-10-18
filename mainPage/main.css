@@ -1,0 +1,19 @@
+body {
+  background-image: url('./images/main.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#navbar {
+  border-radius: 5px;
+}
+
+#searchPeople {
+  margin-left: 5px;
+}
+
+#content {
+  width: 100vw;
+  height: 100vh;
+}
