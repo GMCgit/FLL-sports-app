@@ -18,9 +18,9 @@
       <div id="textArea">
         <h1 class="text">Login</h1>
 
-        <input type="text" placeholder="Username" class="center" required />
+        <input id="username" type="text" placeholder="Username" class="center" required />
         <hr />
-        <input type="text" placeholder="Password" class="center" required />
+        <input id="password" type="text" placeholder="Password" class="center" required />
         <hr />
         <button class="btn btn-primary center" onclick="LogIn()"><b>Log in</b></button>
         <hr />
@@ -43,5 +43,27 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+      let firebaseConfig = {
+        apiKey: "AIzaSyCM2sEUC8IruO3FAd5AczvgxfqIUZ5ayoM",
+        authDomain: "fll-sports-app.firebaseapp.com",
+        databaseURL: "https://fll-sports-app.firebaseio.com",
+        projectId: "fll-sports-app",
+        storageBucket: "fll-sports-app.appspot.com",
+        messagingSenderId: "984650261585",
+        appId: "1:984650261585:web:75826e5684ec5ee71f8470",
+        measurementId: "G-TH76ZB69PB",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script src="./login.js" defer></script>
   </body>
 </html>

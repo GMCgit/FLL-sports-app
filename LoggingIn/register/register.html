@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="register.css" />
+  </head>
+  <body>
+    <div class="form">
+      <div id="textArea">
+        <h1 class="text">Register</h1>
+
+        <input
+          id="userName"
+          type="text"
+          placeholder="Username"
+          class="center"
+          required
+        />
+        <hr />
+        <input
+          id="name"
+          type="text"
+          placeholder="Your name"
+          class="center"
+          required
+        />
+        <hr />
+        <input
+          id="password"
+          type="text"
+          placeholder="Password"
+          class="center"
+          required
+        />
+        <hr />
+        <button class="btn btn-primary center" id="submit" onclick="register()">
+          <b>Register!</b>
+        </button>
+        <hr />
+        <button
+          class="btn btn-primary center"
+          onClick="window.location = '/homepage.html'"
+        >
+          <b>Back to the homepage</b>
+        </button>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+      let firebaseConfig = {
+        apiKey: "AIzaSyCM2sEUC8IruO3FAd5AczvgxfqIUZ5ayoM",
+        authDomain: "fll-sports-app.firebaseapp.com",
+        databaseURL: "https://fll-sports-app.firebaseio.com",
+        projectId: "fll-sports-app",
+        storageBucket: "fll-sports-app.appspot.com",
+        messagingSenderId: "984650261585",
+        appId: "1:984650261585:web:75826e5684ec5ee71f8470",
+        measurementId: "G-TH76ZB69PB",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script src="./register.js" defer></script>
+  </body>
+</html>
