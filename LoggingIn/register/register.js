@@ -25,7 +25,7 @@ function register() {
         })
         .then((docRef) => {
           console.log("Success!");
-          window.location.href = "../../index.html?name=Test";
+          window.location.href = "../../index.html";
         })
         .catch((error) => {
           console.error(error);

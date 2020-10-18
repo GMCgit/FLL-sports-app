@@ -12,7 +12,7 @@ function LogIn() {
         querySnapshot.forEach((doc) => {
           if (username.value == doc.data().username) {
             if (password.value == doc.data().password) {
-              window.location = "../../index.html";
+              window.location = `../../mainPage/main.html?doc=${doc.id}`;
             }
           }
         });
