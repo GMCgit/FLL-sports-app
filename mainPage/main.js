@@ -8,5 +8,5 @@ function toProfile() {
 }
 
 function toMap() {
-  window.location = `../map/map.html`
+  window.location = '../map/map.html'
 }
