@@ -27,3 +27,11 @@ body {
   margin-top: calc((100vh - 60vmin)/2);
   border-radius: 10px;
 }
+
+.editIcon {
+  height: 2vmin;
+}
+
+#profile {
+  font-size: 3vmin;
+}
