@@ -8,3 +8,7 @@ document.getElementById("Name").innerHTML = `Name: ${sessionStorage.getItem("nam
 function toMain() {
   window.location = `../mainPage/main.html`;
 }
+
+function toMap() {
+  window.location = `../map/map.html`
+}
