@@ -12,7 +12,10 @@ function LogIn() {
         querySnapshot.forEach((doc) => {
           if (username.value == doc.data().username) {
             if (password.value == doc.data().password) {
-              window.location = `../../mainPage/main.html?doc=${doc.id}`;
+              sessionStorage.setItem("username", doc.data().username);
+              sessionStorage.setItem("password", doc.data().password);
+              sessionStorage.setItem("name", doc.data().name)
+              window.location = `../../mainPage/main.html`;
             }
           }
         });
