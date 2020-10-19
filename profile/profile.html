@@ -10,7 +10,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="profile.css" />
   </head>
   <body>
     <div id="content">
@@ -30,12 +30,12 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <button class="nav-link btn">Main</button>
-            </li>
             <li class="nav-item">
-              <button class="nav-link btn" onclick="toProfile()"
-                >My Profile <span class="sr-only">(current)</span></
+              <button class="nav-link btn" onclick="toMain()">Main</button>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                >My Profile <span class="sr-only">(current)</span></a
               >
             </li>
             <li class="nav-item">
@@ -65,10 +65,7 @@
                       placeholder="Search"
                       aria-label="Search"
                     />
-                    <button
-                      class="btn btn-outline-success my-2 my-sm-0"
-                      type="submit"
-                    >
+                    <button class="btn btn-outline-success my-2 my-sm-0">
                       Search
                     </button>
                   </form>
@@ -78,7 +75,9 @@
           </ul>
         </div>
       </nav>
+      <div id="profile"></div>
     </div>
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -122,6 +121,6 @@
       firebase.analytics();
     </script>
 
-    <script src="./main.js" defer></script>
+    <script src="./profile.js" defer></script>
   </body>
 </html>
