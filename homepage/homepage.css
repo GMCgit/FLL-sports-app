@@ -5,6 +5,11 @@ body {
   background-position: center;
 }
 
+#content {
+  width: 100vw;
+  height: 100vh;
+}
+
 .loginDiv {
   background-color: aliceblue;
   width: 40vmin;
