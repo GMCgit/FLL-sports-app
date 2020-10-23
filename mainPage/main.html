@@ -34,9 +34,9 @@
               <button class="nav-link btn">Main</button>
             </li>
             <li class="nav-item">
-              <button class="nav-link btn" onclick="toProfile()"
-                >My Profile <span class="sr-only">(current)</span></
-              >
+              <button class="nav-link btn" onclick="toProfile()">
+                My Profile <span class="sr-only">(current)</span>
+              </button>
             </li>
             <li class="nav-item">
               <button class="nav-link btn" onclick="toMap()">Map</button>
@@ -58,21 +58,25 @@
                 <a class="dropdown-item" href="#">Blocked people</a>
                 <div class="dropdown-divider"></div>
                 <div id="searchPeople">
-                  <form class="form-inline my-2 my-lg-0">
+                  <div class="form-inline my-2 my-lg-0">
                     <input
                       class="form-control mr-sm-2"
                       type="search"
                       placeholder="Search"
                       aria-label="Search"
+                      id="userEntered"
                     />
                     <button
                       class="btn btn-outline-success my-2 my-sm-0"
                       type="submit"
+                      onclick="searchPeople()"
                     >
                       Search
                     </button>
-                  </form>
+                    <hr />
+                  </div>
                 </div>
+                <div id="Results"></div>
               </div>
             </li>
           </ul>
@@ -121,6 +125,50 @@
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
     </script>
+
+    <script>
+      function searchPeople() {
+        const searchTerm = document.getElementById("userEntered");
+
+        let db = firebase.firestore();
+        let users = [];
+
+        db.collection("users")
+          .get()
+          .then((querySearch) => {
+            querySearch.forEach((doc) => {
+              let Username = doc.data().username;
+              if (Username.startsWith(searchTerm.value)) {
+                users.push({ username: Username, docId: doc.id });
+              }
+            });
+          })
+          .then(() => {
+            document.getElementById("Results").innerHTML = "";
+            for (i = 0; i < users.length; i++) {
+              let child = document.createElement("button");
+              child.innerHTML = users[i].username;
+              child.classList.add("btn");
+              child.classList.add("btn-outline-dark");
+              child.classList.add("SearchResult");
+              child.classList.add("btn-lg");
+              document.getElementById("Results").appendChild(child);
+            }
+          });
+      }
+    </script>
+    <style>
+      .SearchResult {
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 60vw;
+        height: 5vh;
+        text-align: center;
+        margin-left: calc((100vw - 60vw) / 2);
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
 
     <script src="./main.js" defer></script>
   </body>

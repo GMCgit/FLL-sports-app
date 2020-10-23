@@ -18,3 +18,7 @@ function signOut() {
   sessionStorage.clear();
   window.location = "../index.html";
 }
+
+function toEditProfile() {
+  window.location = "../profile/editProfile/editProfile.html"
+}
