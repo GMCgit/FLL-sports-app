@@ -3,6 +3,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 }
 
 #navbar {
@@ -16,4 +17,26 @@ body {
 #content {
   width: 100vw;
   height: 100vh;
+}
+
+#mapBg {
+  position: absolute;
+  width: 74vw;
+  height: 74vh;
+  border-radius: 5px;
+  background-color: aliceblue;
+  left: calc((100vw - 74vw) / 2);
+  margin-top: calc((100vh - 74vh) / 2);
+  margin-bottom: calc((100vh - 74vh) / 2);
+  opacity: 70%;
+}
+
+#map {
+  position: absolute;
+  width: 70vw;
+  height: 70vh;
+  left: calc((100vw - 70vw) / 2);
+  margin-top: calc((100vh - 70vh) / 2);
+  border-radius: 5px;
+  opacity: 100%;
 }
