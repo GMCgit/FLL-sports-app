@@ -14,11 +14,24 @@ function LogIn() {
             if (password.value == doc.data().password) {
               sessionStorage.setItem("username", doc.data().username);
               sessionStorage.setItem("password", doc.data().password);
-              sessionStorage.setItem("name", doc.data().name)
+              sessionStorage.setItem("name", doc.data().name);
+              if (document.getElementById("Remeber").checked == true) {
+                localStorage.setItem("username", doc.data().username);
+                localStorage.setItem("password", doc.data().password);
+                localStorage.setItem("name", doc.data().name);
+              }
               window.location = `../../mainPage/main.html`;
             }
           }
         });
       });
+
   }
+}
+
+if (localStorage.length > 0) {
+  sessionStorage.setItem("username", localStorage.getItem("username"));
+  sessionStorage.setItem("password", localStorage.getItem("password"));
+  sessionStorage.setItem("name", localStorage.getItem("name"));
+  window.location = `../../mainPage/main.html`;
 }

@@ -11,6 +11,10 @@ body {
   height: 100vh;
 }
 
+.remb {
+  font-size: 2vmin;
+}
+
 .form {
   background-color: aliceblue;
   width: 40vmin;
@@ -30,6 +34,8 @@ body {
 }
 
 .center {
+  margin-top: 0.5vmin;
+  margin-bottom: 0.5vmin;
   width: 30vmin;
   margin-left: 5vmin;
   margin-right: 5vmin;

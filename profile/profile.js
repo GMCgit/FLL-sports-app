@@ -12,3 +12,9 @@ function toMain() {
 function toMap() {
   window.location = `../map/map.html`
 }
+
+function signOut() {
+  localStorage.clear();
+  sessionStorage.clear();
+  window.location = "../index.html";
+}
