@@ -11,10 +11,6 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="map.css" />
-    <script
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFMRVSE6aD3QbJBgA3xPnOa2aV21EZJA&callback=initMap"
-    ></script>
     <style type="text/css">
       /* Set the size of the div element that contains the map */
       #map {
@@ -24,23 +20,6 @@
         /* The width is the width of the web page */
       }
     </style>
-    <script>
-      // Initialize and add the map
-      function initMap() {
-        // The location of Uluru
-        const uluru = { lat: -25.344, lng: 131.036 };
-        // The map, centered at Uluru
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: uluru,
-        });
-        // The marker, positioned at Uluru
-        const marker = new google.maps.Marker({
-          position: uluru,
-          map: map,
-        });
-      }
-    </script>
   </head>
   <body>
     <div id="content">
@@ -108,8 +87,6 @@
           </ul>
         </div>
       </nav>
-      <h3>My Google Maps Demo</h3>
-      <!--The div element for the map -->
       <div id="map"></div>
     </div>
     <link
@@ -153,6 +130,63 @@
 
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
+    </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFMRVSE6aD3QbJBgA3xPnOa2aV21EZJA&callback=initMap"
+      defer
+    ></script>
+
+    <script defer>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 11,
+          center: new google.maps.LatLng(45.8369, 16.01129),
+          mapTypeId: "roadmap",
+        });
+
+        // defines custom icons
+        var icons = {
+          icon: {
+            icon: "./images/icon.svg",
+          },
+        };
+
+        function addMarker(feature) {
+          var marker = new google.maps.Marker({
+            position: feature.position,
+            map: map,
+          });
+        }
+
+        // I wrote this - don't know if it works...
+        function addInfoWindow(feature) {
+          var infowindow = new google.maps.InfoWindow({
+            content: features.content,
+          });
+        }
+
+        var features = [
+          {
+            position: new google.maps.LatLng(45.8369, 16.01129),
+            content: "Maksimir",
+          },
+          {
+            position: new google.maps.LatLng(45.7833302, 15.916663),
+            content: "Jarun"
+          },
+          {
+            position: new google.maps.LatLng(45.784496862, 15.985662724),
+            content: "Bundek"
+          }
+        ];
+
+        for (var i = 0, feature; (feature = features[i]); i++) {
+          addMarker(feature);
+          addInfoWindow(feature);
+        }
+      }
     </script>
 
     <script src="./map.js" defer></script>
