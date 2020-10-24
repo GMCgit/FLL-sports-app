@@ -28,7 +28,9 @@
               <button class="nav-link btn" onclick="toMain()">Main</button>
             </li>
             <li class="nav-item">
-              <button class="nav-link btn" onclick="toProfile()">My Profile</button>
+              <button class="nav-link btn" onclick="toProfile()">
+                My Profile
+              </button>
             </li>
             <li class="nav-item">
               <button class="nav-link btn" onclick="toMap()">Map</button>
@@ -57,13 +59,26 @@
                       placeholder="Search"
                       aria-label="Search"
                       id="userEntered"
+                      onchange="searchPeople()"
                     />
-                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="searchPeople()">
+                    <button
+                      class="btn btn-outline-success my-2 my-sm-0"
+                      type="submit"
+                      onclick="searchPeople()"
+                    >
                       Search
                     </button>
+                    <hr />
                   </div>
                 </div>
-                <div id="Results"></div>
+                <div id="Results">
+                  <button
+                    id="ResButt"
+                    class="invis"
+                    onclick="goToPerson()"
+                  ></button>
+                  <div id="DocId" class="invis"></div>
+                </div>
               </div>
             </li>
           </ul>
@@ -101,9 +116,9 @@
             id="age"
             name="age"
             placeholder="change your age"
-          />  
-    
-          <input type="button" value="submit">
+          />
+
+          <input type="button" value="submit" />
         </form>
       </div>
     </div>
@@ -164,22 +179,30 @@
             querySearch.forEach((doc) => {
               let Username = doc.data().username;
               if (Username.startsWith(searchTerm.value)) {
-                users.push({ username: Username, docId: doc.id });
+                user = { username: Username, docId: doc.id };
               }
             });
           })
           .then(() => {
-            document.getElementById("Results").innerHTML = "";
-            for (i = 0; i < users.length; i++) {
-              let child = document.createElement("button");
-              child.innerHTML = users[i].username;
-              child.classList.add("btn");
-              child.classList.add("btn-outline-dark");
-              child.classList.add("SearchResult");
-              child.classList.add("btn-lg");
-              document.getElementById("Results").appendChild(child);
-            }
+            let child = document.getElementById("ResButt");
+            child.innerHTML = user.username;
+            child.classList.remove("invis");
+            child.classList.add("btn");
+            child.classList.add("btn-outline-dark");
+            child.classList.add("SearchResult");
+            child.classList.add("btn-lg");
+            document.getElementById("Results").appendChild(child);
+            document.getElementById("DocId").innerHTML = user.docId;
           });
+      }
+
+      function goToPerson() {
+        let docId = document.getElementById("DocId").innerHTML;
+
+        sessionStorage.removeItem("docId");
+        sessionStorage.setItem("docId", docId);
+
+        window.location = "../othersProfile/others.html";
       }
     </script>
     <style>
@@ -192,6 +215,10 @@
         margin-left: calc((100vw - 60vw) / 2);
         margin-top: 10px;
         margin-bottom: 10px;
+      }
+
+      .invis {
+        visibility: hidden;
       }
     </style>
 
