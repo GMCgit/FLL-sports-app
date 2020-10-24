@@ -91,44 +91,23 @@
           </ul>
         </div>
       </nav>
-      <div id="profile">
+      <div id="profile">  
+        <h2>Info:</h2>
         <div id="Username"></div>
         <div id="Name"></div>
-        <form action="/action_page.php">
-          <label for="phone">Optional options:</label>
-          <label for="sport"> </label>
-          <label for="scam"> </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="add phone number"
-            pattern="[0-9]{3} [0-9]{3} [0-9]{3}"
-          />
-          <input
-            type="tel"
-            id="sport"
-            name="sport"
-            placeholder="add phaworeet sport"
-          />
-          <input
-            type="tel"
-            id="sport"
-            name="scam"
-            placeholder="add credit card number"
-            pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"
-          />
-          <input type="submit" />
-        </form>
-        <button class="btn btn-primary" onclick="toEditProfile()">
-          Edit profile
-        </button>
+        <button class="btn btn-info" onclick="toFriends()">Friends</button>
+        <h3>Biography</h3>
+        <div id="Biography"></div>
+        <hr>
+        <h2>Edit your profile:</h2>
+        <button class="btn btn-primary" onclick="toEditProfile()">Edit profile</button>
+        <br>
+        <br>
         <button class="btn btn-outline-danger" onclick="signOut()">
           Sign out
         </button>
       </div>
     </div>
-
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"

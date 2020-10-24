@@ -22,3 +22,6 @@ function signOut() {
 function toEditProfile() {
   window.location = "../profile/editProfile/editProfile.html"
 }
+function toFriends() {
+  alert("ne radi nis jos")
+}

@@ -16,3 +16,15 @@ function toMap() {
 function toProfile() {
     window.location = "/profile/profile.html"
 }
+
+function change_username() {
+  alert("ne radi nis jos")
+}
+
+function change_name() {
+  alert("ne radi nis jos")
+}
+
+function toPassChange() {
+  alert("ni ovo jos nis ne radi")
+}
