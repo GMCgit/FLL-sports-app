@@ -3,6 +3,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100vmax;
   background-position: center;
+  overflow: hidden;
 }
 
 #content {
