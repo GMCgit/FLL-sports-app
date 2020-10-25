@@ -140,7 +140,7 @@
         const searchTerm = document.getElementById("userEntered");
 
         let db = firebase.firestore();
-        let users = [];
+        let user;
 
         db.collection("users")
           .get()
@@ -148,7 +148,11 @@
             querySearch.forEach((doc) => {
               let Username = doc.data().username;
               if (Username.startsWith(searchTerm.value)) {
-                user = { username: Username, docId: doc.id };
+                user = {
+                  username: Username,
+                  docId: doc.id,
+                  name: doc.data().name,
+                };
               }
             });
           })
@@ -161,7 +165,8 @@
             child.classList.add("SearchResult");
             child.classList.add("btn-lg");
             document.getElementById("Results").appendChild(child);
-            document.getElementById("DocId").innerHTML = user.docId;
+            let obj = { ...user };
+            document.getElementById("DocId").innerHTML = JSON.stringify(obj);
           });
       }
 

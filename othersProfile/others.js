@@ -1,9 +1,9 @@
 let db = firebase.firestore();
 const username = document.getElementById("username");
 
-username.innerHTML = sessionStorage.getItem("username");
-document.getElementById("Username").innerHTML = `Username: ${sessionStorage.getItem("username")}`;
-document.getElementById("Name").innerHTML = `Name: ${sessionStorage.getItem("name")}`;
+let otherObj = JSON.parse(sessionStorage.getItem("docId"))
+
+username.innerHTML = otherObj.username;
 
 function toMain() {
   window.location = `../mainPage/main.html`;
@@ -11,12 +11,6 @@ function toMain() {
 
 function toMap() {
   window.location = `../map/map.html`
-}
-
-function signOut() {
-  localStorage.clear();
-  sessionStorage.clear();
-  window.location = "../index.html";
 }
 
 function toEditProfile() {
