@@ -1,38 +1,40 @@
 body {
-    background-image: url("./images/Editprofile.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-  }
-  
-  #navbar {
-    border-radius: 5px;
-  }
-  
-  #searchPeople {
-    margin-left: 5px;
-  }
-  
-  #content {
-    width: 100vw;
-    height: 100vh;
-  }
-  
-  #profile {
-    background-color: aliceblue;
-    width: 40vmin;
-    height: 60vmin;
-    opacity: 80%;
-    margin-left: calc((100vw - 40vmin)/2);
-    margin-top: calc((100vh - 60vmin)/2);
-    border-radius: 10px;
-  }
-  
-  .editIcon {
-    height: 2vmin;
-  }
-  
-  #profile {
-    font-size: 3vmin;
-  }
+  background-image: url("./images/Editprofile.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+#navbar {
+  border-radius: 5px;
+}
+
+#searchPeople {
+  margin-left: 5px;
+}
+
+#content {
+  width: 100vw;
+  height: 100vh;
+}
+
+#profileBg {
+  position: absolute;
+  background-color: aliceblue;
+  width: 60vw;
+  height: 60vh;
+  opacity: 80%;
+  left: 20vw;
+  top: 20vh;
+  border-radius: 10px;
+}
+
+#profile {
+  position: absolute;
+  width: 60vw;
+  height: 60vh;
+  opacity: 100%;
+  border-radius: 10px;
+  font-size: 2vmin;
+}

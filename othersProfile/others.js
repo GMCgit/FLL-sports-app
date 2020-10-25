@@ -20,6 +20,6 @@ function toMap() {
   window.location = `../map/map.html`;
 }
 
-function toEditProfile() {
-  window.location = "../profile/editProfile/editProfile.html";
+function toProfile() {
+  window.location = '../profile/profile.html'
 }

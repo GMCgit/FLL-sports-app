@@ -84,23 +84,32 @@
           </ul>
         </div>
       </nav>
+      <div id="profileBg" />
       <div id="profile">
         <div id="Username"></div>
-        <button class="btn btn-primary" onclick="change_username()">
+        <input type="text" id="new_username" placeholder="Enter new username" />
+        <br />
+        <button class="btn btn-primary " onclick="change_username()">
           Change username
         </button>
+        <hr />
         <div id="Name"></div>
-        <button class="btn btn-primary" onclick="change_name()">
+        <input type="text" id="new_name" placeholder="Enter new username" />
+        <br />
+        <button class="btn btn-primary " onclick="change_name()">
           Change name
         </button>
+        <hr />
+        <input type="password" id="new_pass" placeholder="Enter new password" />
+        <input type="password" id="old_pass" placeholder="Enter current password" />
         <br />
-        <button class="btn btn-danger" onclick="toPassChange()">
+        <button class="btn btn-danger " onclick="PassChange()">
           Change password
         </button>
-        <form action="/action_page.php">
+        <hr />
+        <form>
           <label for="phone">Optional options:</label>
-          <label for="sport"> </label>
-          <label for="scam"> </label>
+          <br />
           <input
             type="tel"
             id="phone"
@@ -108,25 +117,21 @@
             placeholder="add phone number"
             pattern="[0-9]{3} [0-9]{3} [0-9]{3}"
           />
+          <br />
           <input
             type="tel"
             id="sport"
             name="sport"
-            placeholder="add phaworeet (fejvorit) sport"
+            placeholder="add favourite sport"
           />
-          <input
-            type="tel"
-            id="sport"
-            name="scam"
-            placeholder="add credit card number"
-            pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"
-          />
+          <br />
           <input
             type="number"
             id="age"
             name="age"
             placeholder="change your age"
           />
+          <hr />
 
           <input type="button" value="submit" />
         </form>
