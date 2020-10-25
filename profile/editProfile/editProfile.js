@@ -71,7 +71,6 @@ function change_name() {
     localStorage.setItem("name", document.getElementById("new_name").value);
   }
 
-  username.innerHTML = sessionStorage.getItem("name");
   document.getElementById("name").innerHTML = `name: ${sessionStorage.getItem(
     "name"
   )}`;
