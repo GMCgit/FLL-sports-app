@@ -18,3 +18,29 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+#profileBg {
+  position: absolute;
+  border-radius: 5px;
+  width: 60vw;
+  height: 60vh;
+  background-color: aliceblue;
+  opacity: 70%;
+  left: 20vw;
+  top: 20vh;
+}
+
+#profile {
+  position: absolute;
+  width: 60vw;
+  height: 60vh;
+  opacity: 100%;
+  left: 20vw;
+  top: 20vh;
+}
+
+.text {
+  text-align: center;
+  font-size: 3vmin;
+  margin-bottom: 1vmin;
+}
