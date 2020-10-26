@@ -10,15 +10,15 @@ document.getElementById("Name").innerHTML = `Name: ${sessionStorage.getItem(
 )}`;
 
 function toMain() {
-  window.location = `/mainPage/main.html`;
+  window.location = `../../mainPage/main.html`;
 }
 
 function toMap() {
-  window.location = `/map/map.html`;
+  window.location = `../../map/map.html`;
 }
 
 function toProfile() {
-  window.location = "/profile/profile.html";
+  window.location = "../../profile/profile.html";
 }
 
 function change_username() {
