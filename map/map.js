@@ -10,3 +10,11 @@ let db = firebase.firestore();
 const username = document.getElementById("username");
 
 username.innerHTML = sessionStorage.getItem("username");
+
+if (sessionStorage.getItem("admin") == "true") {
+  document.getElementById("adminPage").classList.remove("invis");
+}
+
+function toAdmin() {
+  window.location = "../adminPage/admin.html";
+}

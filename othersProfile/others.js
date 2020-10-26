@@ -23,3 +23,11 @@ function toMap() {
 function toProfile() {
   window.location = '../profile/profile.html'
 }
+
+if (sessionStorage.getItem("admin") == "true") {
+  document.getElementById("adminPage").classList.remove("invis");
+}
+
+function toAdmin() {
+  window.location = "../adminPage/admin.html";
+}

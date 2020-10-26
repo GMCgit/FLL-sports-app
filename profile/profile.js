@@ -25,3 +25,11 @@ function toEditProfile() {
 function toFriends() {
   alert("ne radi nis jos")
 }
+
+if (sessionStorage.getItem("admin") == "true") {
+  document.getElementById("adminPage").classList.remove("invis");
+}
+
+function toAdmin() {
+  window.location = "../adminPage/admin.html";
+}
