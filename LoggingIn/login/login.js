@@ -26,19 +26,24 @@ function LogIn() {
                 .get()
                 .then((querySearch) => {
                   querySearch.forEach((doc2) => {
-                    if (doc2.id == doc.id) {
+                    if (doc2.data().username == doc.data().username) {
                       sessionStorage.setItem("admin", true);
                       if (document.getElementById("Remeber").checked == true) {
                         localStorage.setItem("admin", true);
                       }
+                      return (window.location = `../../mainPage/main.html`);
                     } else {
+                      if (sessionStorage.getItem("admin") !== null) {
+                        return;
+                      }
                       sessionStorage.setItem("admin", false);
                       if (document.getElementById("Remeber").checked == true) {
                         localStorage.setItem("admin", false);
                       }
                     }
                   });
-                }).then(() => {
+                })
+                .then(() => {
                   window.location = `../../mainPage/main.html`;
                 });
             }
