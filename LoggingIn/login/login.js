@@ -31,7 +31,7 @@ function LogIn() {
   }
 }
 
-if (localStorage.length > 0) {
+if (localStorage.getItem("username") !== null && localStorage.getItem("password") !== null) {
   sessionStorage.setItem("username", localStorage.getItem("username"));
   sessionStorage.setItem("password", localStorage.getItem("password"));
   sessionStorage.setItem("name", localStorage.getItem("name"));

@@ -160,7 +160,7 @@
 
         function addMarker(feature) {
           var marker = new google.maps.Marker({
-            position: feature.position,
+            position: JSON.parse(feature),
             map: map,
           });
         }
@@ -172,29 +172,15 @@
           });
         }
 
-        var features = [
-          {
-            position: new google.maps.LatLng(45.8369, 16.01129),
-            content: "Maksimir",
-          },
-          {
-            position: new google.maps.LatLng(45.7833302, 15.916663),
-            content: "Jarun",
-          },
-          {
-            position: new google.maps.LatLng(45.784496862, 15.985662724),
-            content: "Bundek",
-          },
-          {
-            position: new google.maps.LatLng(45.916663, 15.9666628),
-            content: "Medvednica",
-          },
-        ];
+        let featuers = [];
 
-        for (var i = 0, feature; (feature = features[i]); i++) {
-          addMarker(feature);
-          addInfoWindow(feature);
-        }
+        let db = firebase.firestore();
+
+        db.collection("fields").get().then((querySearch) => {
+          querySearch.forEach((doc) => {
+            addMarker(doc.data().position);
+          })
+        })
       }
     </script>
 

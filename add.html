@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+      let firebaseConfig = {
+        apiKey: "AIzaSyCM2sEUC8IruO3FAd5AczvgxfqIUZ5ayoM",
+        authDomain: "fll-sports-app.firebaseapp.com",
+        databaseURL: "https://fll-sports-app.firebaseio.com",
+        projectId: "fll-sports-app",
+        storageBucket: "fll-sports-app.appspot.com",
+        messagingSenderId: "984650261585",
+        appId: "1:984650261585:web:75826e5684ec5ee71f8470",
+        measurementId: "G-TH76ZB69PB",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFMRVSE6aD3QbJBgA3xPnOa2aV21EZJA&callback=initMap"
+      defer
+    ></script>
+
+    <script defer>
+      function initMap() {
+        let db = firebase.firestore();
+        db.collection("fields").add({
+          name: "Maksimir",
+          position: JSON.stringify({lat: 45.8369, lng: 16.01129})
+        });
+        db.collection("fields").add({
+          position: JSON.stringify({lat: 45.7833302, lng: 15.916663}),
+          name: "Jarun",
+        });
+        db.collection("fields").add({
+          position: JSON.stringify({lat: 45.784496862, lng: 15.985662724}),
+          name: "Bundek",
+        });
+        db.collection("fields").add({
+          position: JSON.stringify({lat: 45.916663, lng: 15.9666628}),
+          name: "Medvednica",
+        });
+      }
+    </script>
+  </body>
+</html>
