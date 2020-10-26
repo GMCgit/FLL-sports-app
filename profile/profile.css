@@ -36,3 +36,9 @@ body {
 #profile {
   font-size: 3vmin;
 }
+
+.invis {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}

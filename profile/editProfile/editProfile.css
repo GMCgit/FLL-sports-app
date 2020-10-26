@@ -38,3 +38,9 @@ body {
   border-radius: 10px;
   font-size: 2vmin;
 }
+
+.invis {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
