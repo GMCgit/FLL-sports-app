@@ -1,8 +1,8 @@
 body {
-  background-image: url('./images/main.jpg');
+  background-image: url('./images/admin.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: 70%;
   overflow: hidden;
 }
 
@@ -17,10 +17,4 @@ body {
 #content {
   width: 100vw;
   height: 100vh;
-}
-
-.invis {
-  visibility: hidden;
-  width: 0px;
-  height: 0px;
 }

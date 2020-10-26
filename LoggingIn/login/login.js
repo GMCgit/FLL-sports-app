@@ -22,19 +22,40 @@ function LogIn() {
                 localStorage.setItem("name", doc.data().name);
                 localStorage.setItem("DocName", doc.id);
               }
-              window.location = `../../mainPage/main.html`;
+              db.collection("admins")
+                .get()
+                .then((querySearch) => {
+                  querySearch.forEach((doc2) => {
+                    if (doc2.id == doc.id) {
+                      sessionStorage.setItem("admin", true);
+                      if (document.getElementById("Remeber").checked == true) {
+                        localStorage.setItem("admin", true);
+                      }
+                    } else {
+                      sessionStorage.setItem("admin", false);
+                      if (document.getElementById("Remeber").checked == true) {
+                        localStorage.setItem("admin", false);
+                      }
+                    }
+                  });
+                }).then(() => {
+                  window.location = `../../mainPage/main.html`;
+                });
             }
           }
         });
       });
-
   }
 }
 
-if (localStorage.getItem("username") !== null && localStorage.getItem("password") !== null) {
+if (
+  localStorage.getItem("username") !== null &&
+  localStorage.getItem("password") !== null
+) {
   sessionStorage.setItem("username", localStorage.getItem("username"));
   sessionStorage.setItem("password", localStorage.getItem("password"));
   sessionStorage.setItem("name", localStorage.getItem("name"));
   sessionStorage.setItem("DocName", localStorage.getItem("DocName"));
+  sessionStorage.setItem("admin", localStorage.getItem("admin"));
   window.location = `../../mainPage/main.html`;
 }

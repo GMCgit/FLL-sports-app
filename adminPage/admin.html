@@ -10,7 +10,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="admin.css" />
   </head>
   <body>
     <div id="content">
@@ -30,8 +30,8 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <button class="nav-link btn">Main</button>
+            <li class="nav-item">
+              <button class="nav-link btn" onclick="toMain()">Main</button>
             </li>
             <li class="nav-item">
               <button class="nav-link btn" onclick="toProfile()">
@@ -41,7 +41,7 @@
             <li class="nav-item">
               <button class="nav-link btn" onclick="toMap()">Map</button>
             </li>
-            <li id="adminPage" class="nav-item invis">
+            <li id="adminPage" class="nav-item active">
               <button class="nav-link btn" onclick="toAdmin()">To Admin</button>
             </li>
             <li class="nav-item dropdown">
@@ -198,6 +198,6 @@
       }
     </style>
 
-    <script src="./main.js" defer></script>
+    <script src="./admin.js" defer></script>
   </body>
 </html>
