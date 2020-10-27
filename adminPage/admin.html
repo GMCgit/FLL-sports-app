@@ -126,6 +126,32 @@
             New Field
           </button>
         </div>
+        <div class="form-group" id="Users">
+          <h4>User data</h4>
+          <div id="userCount"></div>
+        </div>
+        <div class="form-group" id="asignAdmin">
+          <h4>Assign an admin</h4>
+          <input
+            type="text"
+            id="usernameIn"
+            class="form-control"
+            placeholder="Username"
+          />
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            placeholder="Password"
+          />
+          <hr />
+          <button class="btn btn-outline-primary" onclick="assignAdmin()">
+            Assign admin
+          </button>
+          <button class="btn btn-outline-danger" onclick="removeAdmin()">
+            Remove admin
+          </button>
+        </div>
       </div>
     </div>
     <link

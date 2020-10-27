@@ -50,3 +50,22 @@ body {
   margin-right: 5vw;
   margin-top: 10px
 }
+
+.userCount {
+  font-weight: bold;
+  font-size: 4vmin;
+}
+
+#userCount {
+  font-size: 3vmin;
+}
+
+#asignAdmin {
+  width: 20vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+#asignAdmin > button {
+  width: 20vw;
+}

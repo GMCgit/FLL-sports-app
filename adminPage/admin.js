@@ -17,6 +17,18 @@ db.collection("admins")
     window.location = "../mainPage/main.html";
   });
 
+db.collection("users")
+  .get()
+  .then((querySearch) => {
+    let counter = 0;
+    querySearch.forEach((doc) => {
+      counter++;
+    });
+    document.getElementById(
+      "userCount"
+    ).innerHTML = `There are <div class="userCount">${counter}</div> users`;
+  });
+
 function toProfile() {
   window.location = `../profile/profile.html`;
 }
@@ -55,5 +67,54 @@ function newField() {
     name.value = "";
   } else {
     alert("You need to input all the data correctly");
+  }
+}
+
+function assignAdmin() {
+  let user = document.getElementById("usernameIn");
+  let password = document.getElementById("password");
+
+  if (user.value !== "" && password.value !== "") {
+    db.collection("users")
+      .get()
+      .then((querySearch) => {
+        querySearch.forEach((doc) => {
+          if (
+            doc.data().username == user.value &&
+            doc.data().password == password.value
+          ) {
+            db.collection("admins").doc(doc.id).set({
+              username: doc.data().username,
+              password: doc.data().password,
+              name: doc.data().name,
+            });
+          }
+        });
+      });
+  } else {
+    alert("You have to input everything");
+  }
+}
+
+function removeAdmin() {
+  let user = document.getElementById("usernameIn");
+  let password = document.getElementById("password");
+  if (user.value !== "" && password.value !== "") {
+    db.collection("admins")
+      .get()
+      .then((querySearch) => {
+        querySearch.forEach((doc) => {
+          if (
+            doc.data().username == user.value &&
+            doc.data().password == password.value
+          ) {
+            db.collection("admins").doc(doc.id).delete().then(() => {
+              alert(`Removed ${user.value} from the admin list`);
+            });
+          }
+        });
+      });
+  } else {
+    alert("You have to input everything");
   }
 }
