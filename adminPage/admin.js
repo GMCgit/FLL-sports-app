@@ -21,12 +21,22 @@ db.collection("users")
   .get()
   .then((querySearch) => {
     let counter = 0;
+    let adminCounter = 0;
     querySearch.forEach((doc) => {
       counter++;
     });
-    document.getElementById(
-      "userCount"
-    ).innerHTML = `There are <div class="userCount">${counter}</div> users`;
+    db.collection("admins")
+      .get()
+      .then((q) => {
+        q.forEach((doc2) => {
+          adminCounter++;
+        });
+      })
+      .then(() => {
+        document.getElementById(
+          "userCount"
+        ).innerHTML = `There are <div class="userCount">${counter}</div> users and <div class="userCount">${adminCounter}</div> admins`;
+      });
   });
 
 function toProfile() {
@@ -108,9 +118,12 @@ function removeAdmin() {
             doc.data().username == user.value &&
             doc.data().password == password.value
           ) {
-            db.collection("admins").doc(doc.id).delete().then(() => {
-              alert(`Removed ${user.value} from the admin list`);
-            });
+            db.collection("admins")
+              .doc(doc.id)
+              .delete()
+              .then(() => {
+                alert(`Removed ${user.value} from the admin list`);
+              });
           }
         });
       });
