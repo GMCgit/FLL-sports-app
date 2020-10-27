@@ -23,9 +23,9 @@ body {
   background-color: aliceblue;
   position: absolute;
   opacity: 70%;
-  width: 60vw;
+  width: 70vw;
   height: 60vh;
-  left: 20vw;
+  left: 15vw;
   top: 20vh;
   border-radius: 5px;
 }
@@ -33,9 +33,9 @@ body {
 #admin {
   position: absolute;
   opacity: 100%;
-  width: 60vw;
+  width: 70vw;
   height: 60vh;
-  left: 20vw;
+  left: 15vw;
   top: 20vh;
   border-radius: 5px;
   display: grid;
@@ -45,7 +45,6 @@ body {
 }
 
 #newField {
-  width: 20vw;
   margin-left: 5vw;
   margin-right: 5vw;
   margin-top: 10px
@@ -61,7 +60,6 @@ body {
 }
 
 #asignAdmin {
-  width: 20vw;
   margin-left: 5vw;
   margin-right: 5vw;
 }
