@@ -12,7 +12,8 @@ db.collection("admins")
     } else if (doc.data().password !== sessionStorage.getItem("password")) {
       window.location = "../mainPage/main.html";
     }
-  }).catch((err) => {
+  })
+  .catch((err) => {
     window.location = "../mainPage/main.html";
   });
 
@@ -26,4 +27,33 @@ function toMap() {
 
 function toMain() {
   window.location = `../mainPage/main.html`;
+}
+
+function newField() {
+  let lng = document.getElementById("lng");
+  let lat = document.getElementById("lat");
+  let name = document.getElementById("name");
+
+  if (
+    lng.value !== "" &&
+    lat.value !== "" &&
+    name.value !== "" &&
+    Number.parseFloat(lng.value) < 180 &&
+    Number.parseFloat(lng.value) > -180 &&
+    Number.parseFloat(lat.value) < 90 &&
+    Number.parseFloat(lat.value) > -90
+  ) {
+    db.collection("fields").add({
+      name: name.value,
+      position: JSON.stringify({
+        lat: Number.parseFloat(lat.value),
+        lng: Number.parseFloat(lng.value),
+      }),
+    });
+    lng.value = "";
+    lat.value = "";
+    name.value = "";
+  } else {
+    alert("You need to input all the data correctly");
+  }
 }

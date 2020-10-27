@@ -18,3 +18,35 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+#adminBG {
+  background-color: aliceblue;
+  position: absolute;
+  opacity: 70%;
+  width: 60vw;
+  height: 60vh;
+  left: 20vw;
+  top: 20vh;
+  border-radius: 5px;
+}
+
+#admin {
+  position: absolute;
+  opacity: 100%;
+  width: 60vw;
+  height: 60vh;
+  left: 20vw;
+  top: 20vh;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  text-align: center;
+}
+
+#newField {
+  width: 20vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 10px
+}

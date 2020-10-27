@@ -90,7 +90,7 @@ function PassChange() {
     .update({
       password: document.getElementById("new_pass").value,
     });
-
+    alert("Password changed")
   sessionStorage.removeItem("password");
   sessionStorage.setItem("password", document.getElementById("new_pass").value);
 
