@@ -163,8 +163,22 @@
 
         function addMarker(feature) {
           var marker = new google.maps.Marker({
-            position: JSON.parse(feature),
+            position: JSON.parse(feature.position),
             map: map,
+            icon: `./icons/${feature.sport}.png`,
+          });
+          const contentString =
+            "<div>" +
+            '<div id="siteNotice">' +
+            "</div>" +
+            `<h3 id="firstHeading" class="firstHeading">${feature.name}</h3>` +
+            `<h5 id="sport">${feature.sport}</h5>` +
+            "</div>";
+          const infowindow = new google.maps.InfoWindow({
+            content: contentString,
+          });
+          marker.addListener("click", () => {
+            infowindow.open(map, marker);
           });
         }
 
@@ -179,11 +193,17 @@
 
         let db = firebase.firestore();
 
-        db.collection("fields").get().then((querySearch) => {
-          querySearch.forEach((doc) => {
-            addMarker(doc.data().position);
-          })
-        })
+        db.collection("fields")
+          .get()
+          .then((querySearch) => {
+            querySearch.forEach((doc) => {
+              addMarker({
+                position: doc.data().position,
+                name: doc.data().name,
+                sport: doc.data().Sport
+              });
+            });
+          });
       }
     </script>
 
