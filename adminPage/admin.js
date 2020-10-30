@@ -55,6 +55,7 @@ function newField() {
   let lng = document.getElementById("lng");
   let lat = document.getElementById("lat");
   let name = document.getElementById("name");
+  let sport = document.getElementById("sport");
 
   if (
     lng.value !== "" &&
@@ -71,10 +72,12 @@ function newField() {
         lat: Number.parseFloat(lat.value),
         lng: Number.parseFloat(lng.value),
       }),
+      Sport: sport.value
     });
     lng.value = "";
     lat.value = "";
     name.value = "";
+    sport.value = "";
   } else {
     alert("You need to input all the data correctly");
   }
