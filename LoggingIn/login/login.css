@@ -50,3 +50,8 @@ body {
 input {
   border-radius: 5px;
 }
+
+.Button {
+  height: 4vmin;
+  font-size: 3vmin;
+}
