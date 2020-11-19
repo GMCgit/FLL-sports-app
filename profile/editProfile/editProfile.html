@@ -8,6 +8,64 @@
   </head>
   <body>
     <div id="content">
+      <div id="profileBg"></div>
+      <div id="profile">
+        <br />
+        <div id="Username"></div>
+        <input type="text" id="new_username" placeholder="Enter new username" />
+        <br />
+        <button class="btn btn-primary" onclick="change_username()">
+          Change username
+        </button>
+        <hr />
+        <div id="Name"></div>
+        <input type="text" id="new_name" placeholder="Enter new name" />
+        <br />
+        <button class="btn btn-primary" onclick="change_name()">
+          Change name
+        </button>
+        <hr />
+        <input type="password" id="new_pass" placeholder="Enter new password" />
+        <input
+          type="password"
+          id="old_pass"
+          placeholder="Enter current password"
+        />
+        <br />
+        <button class="btn btn-danger" onclick="PassChange()">
+          Change password
+        </button>
+        <hr />
+        <input
+        type ="text"
+        id="bio"
+        placeholder="add bio"
+        />
+        <button class="btn btn-primary" onclick="bio_change()">bio</button>
+        <hr />
+        <label for="sports">Optional:</label>
+        <br />
+        <input
+          type="text"
+          id="sports"
+          name="sports"
+          placeholder="change favourite sports"
+        />
+        <button class="btn btn-primary" onclick="fav_sports()">
+          Update sports
+        </button>
+        <br />
+        <input
+          type="number"
+          id="age"
+          name="age"
+          placeholder="change your age"
+        />
+        <button class="btn btn-primary" onclick="update_age()">
+          update age
+        </button>
+        <hr />
+      </div>
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
         <div id="username" class="navbar-brand"></div>
         <button
@@ -87,59 +145,6 @@
           </ul>
         </div>
       </nav>
-      <div id="profileBg" />
-      <div id="profile">
-        <br>
-        <div id="Username"></div>
-        <input type="text" id="new_username" placeholder="Enter new username" />
-        <br />
-        <button class="btn btn-primary " onclick="change_username()">
-          Change username
-        </button>
-        <hr />
-        <div id="Name"></div>
-        <input type="text" id="new_name" placeholder="Enter new username" />
-        <br />
-        <button class="btn btn-primary " onclick="change_name()">
-          Change name
-        </button>
-        <hr />
-        <input type="password" id="new_pass" placeholder="Enter new password" />
-        <input type="password" id="old_pass" placeholder="Enter current password" />
-        <br />
-        <button class="btn btn-danger " onclick="PassChange()">
-          Change password
-        </button>
-        <hr />
-        <form>
-          <label for="phone">Optional options:</label>
-          <br />
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="add phone number"
-            pattern="[0-9]{3} [0-9]{3} [0-9]{3}"
-          />
-          <br />
-          <input
-            type="tel"
-            id="sport"
-            name="sport"
-            placeholder="add favourite sport"
-          />
-          <br />
-          <input
-            type="number"
-            id="age"
-            name="age"
-            placeholder="change your age"
-          />
-          <hr />
-
-          <input type="button" value="submit" />
-        </form>
-      </div>
     </div>
 
     <link

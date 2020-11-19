@@ -37,6 +37,8 @@ body {
   opacity: 100%;
   border-radius: 10px;
   font-size: 2vmin;
+  left: 20vw;
+  top: 20vh;
 }
 
 .invis {

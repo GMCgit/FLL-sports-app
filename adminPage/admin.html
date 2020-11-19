@@ -14,6 +14,74 @@
   </head>
   <body>
     <div id="content">
+      <div id="adminBG"></div>
+      <div id="admin">
+        <div class="form-group" id="newField">
+          <h4>New field</h4>
+          <input
+            type="text"
+            class="form-control"
+            name="lat"
+            id="lat"
+            aria-describedby="helpId"
+            placeholder="Latitude"
+          />
+          <input
+            type="text"
+            class="form-control"
+            name=""
+            id="lng"
+            aria-describedby="helpId"
+            placeholder="Longitude"
+          />
+          <input
+            type="text"
+            class="form-control"
+            name=""
+            id="name"
+            aria-describedby="helpId"
+            placeholder="Name"
+          />
+          <input
+            type="text"
+            class="form-control"
+            name=""
+            id="sport"
+            aria-describedby="helpId"
+            placeholder="Sport"
+          />
+          <hr />
+          <button onclick="newField()" class="btn btn-outline-primary">
+            New Field
+          </button>
+        </div>
+        <div class="form-group" id="Users">
+          <h4>User data</h4>
+          <div id="userCount"></div>
+        </div>
+        <div class="form-group" id="asignAdmin">
+          <h4>Assign an admin</h4>
+          <input
+            type="text"
+            id="usernameIn"
+            class="form-control"
+            placeholder="Username"
+          />
+          <input
+            type="text"
+            id="password"
+            class="form-control"
+            placeholder="Password"
+          />
+          <hr />
+          <button class="btn btn-outline-primary" onclick="assignAdmin()">
+            Assign admin
+          </button>
+          <button class="btn btn-outline-danger" onclick="removeAdmin()">
+            Remove admin
+          </button>
+        </div>
+      </div>
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
         <div id="username" class="navbar-brand"></div>
         <button
@@ -93,74 +161,6 @@
           </ul>
         </div>
       </nav>
-      <div id="adminBG"></div>
-      <div id="admin">
-        <div class="form-group" id="newField">
-          <h4>New field</h4>
-          <input
-            type="text"
-            class="form-control"
-            name="lat"
-            id="lat"
-            aria-describedby="helpId"
-            placeholder="Latitude"
-          />
-          <input
-            type="text"
-            class="form-control"
-            name=""
-            id="lng"
-            aria-describedby="helpId"
-            placeholder="Longitude"
-          />
-          <input
-            type="text"
-            class="form-control"
-            name=""
-            id="name"
-            aria-describedby="helpId"
-            placeholder="Name"
-          />
-          <input
-            type="text"
-            class="form-control"
-            name=""
-            id="sport"
-            aria-describedby="helpId"
-            placeholder="Sport"
-          />
-          <hr />
-          <button onclick="newField()" class="btn btn-outline-primary">
-            New Field
-          </button>
-        </div>
-        <div class="form-group" id="Users">
-          <h4>User data</h4>
-          <div id="userCount"></div>
-        </div>
-        <div class="form-group" id="asignAdmin">
-          <h4>Assign an admin</h4>
-          <input
-            type="text"
-            id="usernameIn"
-            class="form-control"
-            placeholder="Username"
-          />
-          <input
-            type="text"
-            id="password"
-            class="form-control"
-            placeholder="Password"
-          />
-          <hr />
-          <button class="btn btn-outline-primary" onclick="assignAdmin()">
-            Assign admin
-          </button>
-          <button class="btn btn-outline-danger" onclick="removeAdmin()">
-            Remove admin
-          </button>
-        </div>
-      </div>
     </div>
     <link
       rel="stylesheet"

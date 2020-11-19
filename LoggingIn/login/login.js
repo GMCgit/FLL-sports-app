@@ -16,6 +16,7 @@ function LogIn() {
               sessionStorage.setItem("password", doc.data().password);
               sessionStorage.setItem("name", doc.data().name);
               sessionStorage.setItem("DocName", doc.id);
+              sessionStorage.setItem("bio", doc.data().biography);
               if (document.getElementById("Remeber").checked == true) {
                 localStorage.setItem("username", doc.data().username);
                 localStorage.setItem("password", doc.data().password);

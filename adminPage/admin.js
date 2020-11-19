@@ -72,7 +72,10 @@ function newField() {
         lat: Number.parseFloat(lat.value),
         lng: Number.parseFloat(lng.value),
       }),
-      Sport: sport.value
+      Sport: sport.value,
+      easy: [],
+      medium: [],
+      hard: []
     });
     lng.value = "";
     lat.value = "";

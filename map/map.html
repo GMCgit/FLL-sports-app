@@ -15,6 +15,24 @@
 
   <body>
     <div id="content">
+      <div id="mapBg"></div>
+      <div id="map"></div>
+      <div id="joining">
+        <select id="difficulty">
+          <option value="easy">easy</option>
+          <option value="medium">medium</option>
+          <option value="hard">hard</option>
+        </select>
+        <button
+          onclick="joinMatch()"
+          class="btn btn-primary infowindowBtn"
+          id="joinBtn"
+          disabled
+        >
+          Join
+        </button>
+      </div>
+      <div id="activeName" class="invis"></div>
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
         <div id="username" class="navbar-brand"></div>
         <button
@@ -94,8 +112,6 @@
           </ul>
         </div>
       </nav>
-      <div id="mapBg"></div>
-      <div id="map"></div>
     </div>
     <link
       rel="stylesheet"
@@ -147,6 +163,9 @@
 
     <script defer>
       var map;
+
+      let activeInfowindow;
+
       function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
           zoom: 11,
@@ -167,7 +186,7 @@
             map: map,
             icon: `./icons/${feature.sport}.png`,
           });
-          const contentString =
+          let contentString =
             "<div>" +
             '<div id="siteNotice">' +
             "</div>" +
@@ -178,14 +197,13 @@
             content: contentString,
           });
           marker.addListener("click", () => {
+            document.getElementById("joinBtn").disabled = false;
+            if (activeInfowindow) {
+              activeInfowindow.close();
+            }
             infowindow.open(map, marker);
-          });
-        }
-
-        // I wrote this - don't know if it works...
-        function addInfoWindow(feature) {
-          var infowindow = new google.maps.InfoWindow({
-            content: features.content,
+            activeInfowindow = infowindow;
+            document.getElementById("activeName").innerHTML = feature.name;
           });
         }
 
@@ -200,8 +218,41 @@
               addMarker({
                 position: doc.data().position,
                 name: doc.data().name,
-                sport: doc.data().Sport
+                sport: doc.data().Sport,
               });
+            });
+          });
+      }
+
+      function joinMatch() {
+        let difficulty = document.getElementById("difficulty");
+        let name = document.getElementById("activeName");
+
+        db.collection("fields")
+          .get()
+          .then((q) => {
+            q.forEach((doc) => {
+              if (doc.data().name == name.innerHTML) {
+                if (difficulty.value == "easy") {
+                  let newArr = doc.data().easy || [];
+                  newArr.push(sessionStorage.getItem("DocName"));
+                  db.collection("fields").doc(doc.id).update({
+                    easy: newArr,
+                  });
+                } else if (difficulty.value == "medium") {
+                  let newArr = doc.data().medium || [];
+                  newArr.push(sessionStorage.getItem("DocName"));
+                  db.collection("fields").doc(doc.id).update({
+                    medium: newArr,
+                  });
+                } else if (difficulty.value == "hard") {
+                  let newArr = doc.data().hard || [];
+                  newArr.push(sessionStorage.getItem("DocName"));
+                  db.collection("fields").doc(doc.id).update({
+                    hard: newArr,
+                  });
+                }
+              }
             });
           });
       }
@@ -267,6 +318,8 @@
         visibility: hidden;
       }
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="./map.js" defer></script>
   </body>

@@ -9,6 +9,10 @@ document.getElementById("Name").innerHTML = `Name: ${sessionStorage.getItem(
   "name"
 )}`;
 
+if (sessionStorage.getItem("bio") !== "undefined") {
+  document.getElementById("bio").value = sessionStorage.getItem("bio");
+}
+
 function toMain() {
   window.location = `../../mainPage/main.html`;
 }
@@ -77,27 +81,40 @@ function change_name() {
 }
 
 function PassChange() {
-  if (
-    document.getElementById("new_pass").value == "" ||
-    document.getElementById("old_pass").value !==
-      sessionStorage.getItem("password")
-  ) {
-    alert("ne");
-    return;
-  }
   db.collection("users")
     .doc(sessionStorage.getItem("DocName"))
-    .update({
-      password: document.getElementById("new_pass").value,
-    });
-    alert("Password changed")
-  sessionStorage.removeItem("password");
-  sessionStorage.setItem("password", document.getElementById("new_pass").value);
+    .get()
+    .then((q) => {
+      pass = q.data().password;
+    })
+    .then(() => {
+      if (
+        document.getElementById("new_pass").value == "" ||
+        document.getElementById("old_pass").value !== pass
+      ) {
+        alert("ne");
+        return;
+      }
+      db.collection("users")
+        .doc(sessionStorage.getItem("DocName"))
+        .update({
+          password: document.getElementById("new_pass").value,
+        });
+      alert("Password changed");
+      sessionStorage.removeItem("password");
+      sessionStorage.setItem(
+        "password",
+        document.getElementById("new_pass").value
+      );
 
-  if (localStorage.getItem("password") !== null) {
-    localStorage.removeItem("password");
-    localStorage.setItem("password", document.getElementById("new_pass").value);
-  }
+      if (localStorage.getItem("password") !== null) {
+        localStorage.removeItem("password");
+        localStorage.setItem(
+          "password",
+          document.getElementById("new_pass").value
+        );
+      }
+    });
 }
 
 if (sessionStorage.getItem("admin") == "true") {
@@ -106,4 +123,37 @@ if (sessionStorage.getItem("admin") == "true") {
 
 function toAdmin() {
   window.location = "../../adminPage/admin.html";
+}
+
+function fav_sports() {
+  db.collection("users")
+    .doc(sessionStorage.getItem("DocName"))
+    .update({
+      favourite_sports: document.getElementById("sports").value,
+    });
+}
+
+function update_age() {
+  if (Number(document.getElementById("age").value) > 0) {
+    db.collection("users")
+      .doc(sessionStorage.getItem("DocName"))
+      .update({
+        age: Number(document.getElementById("age").value),
+      });
+    alert("Updated your age");
+  } else {
+    alert("ne");
+  }
+}
+
+function bio_change() {
+  if (document.getElementById("bio").value !== sessionStorage.getItem("bio")) {
+    db.collection("users")
+      .doc(sessionStorage.getItem("DocName"))
+      .update({
+        biography: document.getElementById("bio").value,
+      });
+    sessionStorage.removeItem("bio");
+    sessionStorage.setItem("bio", document.getElementById("bio").value);
+  }
 }

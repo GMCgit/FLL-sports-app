@@ -15,6 +15,25 @@
 
   <body>
     <div id="content">
+      <div id="profileBg"></div>
+      <div id="profile">
+        <h2>Info:</h2>
+        <div id="Username"></div>
+        <div id="Name"></div>
+        <button class="btn btn-info" onclick="toFriends()">Friends</button>
+        <h3>Biography</h3>
+        <div id="Biography" type="text"></div>
+        <hr />
+        <h2>Edit your profile:</h2>
+        <button class="btn btn-primary" onclick="toEditProfile()">
+          Edit profile
+        </button>
+        <br />
+        <br />
+        <button class="btn btn-outline-danger" onclick="signOut()">
+          Sign out
+        </button>
+      </div>
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
         <div id="username" class="navbar-brand"></div>
         <button
@@ -94,24 +113,6 @@
           </ul>
         </div>
       </nav>
-      <div id="profile">
-        <h2>Info:</h2>
-        <div id="Username"></div>
-        <div id="Name"></div>
-        <button class="btn btn-info" onclick="toFriends()">Friends</button>
-        <h3>Biography</h3>
-        <div id="Biography"></div>
-        <hr />
-        <h2>Edit your profile:</h2>
-        <button class="btn btn-primary" onclick="toEditProfile()">
-          Edit profile
-        </button>
-        <br />
-        <br />
-        <button class="btn btn-outline-danger" onclick="signOut()">
-          Sign out
-        </button>
-      </div>
     </div>
     <link
       rel="stylesheet"

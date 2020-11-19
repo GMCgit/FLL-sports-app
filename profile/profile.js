@@ -1,6 +1,10 @@
 let db = firebase.firestore();
 const username = document.getElementById("username");
 
+if (sessionStorage.getItem("bio") !== "undefined") {
+  document.getElementById("Biography").innerHTML = sessionStorage.getItem("bio");
+}
+
 username.innerHTML = sessionStorage.getItem("username");
 document.getElementById("Username").innerHTML = `Username: ${sessionStorage.getItem("username")}`;
 document.getElementById("Name").innerHTML = `Name: ${sessionStorage.getItem("name")}`;

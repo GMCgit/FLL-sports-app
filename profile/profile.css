@@ -19,11 +19,21 @@ body {
   height: 100vh;
 }
 
-#profile {
+#profileBg {
+  position: absolute;
   background-color: aliceblue;
   width: 40vmin;
   height: 60vmin;
   opacity: 70%;
+  margin-left: calc((100vw - 40vmin)/2);
+  margin-top: calc((100vh - 60vmin)/2);
+  border-radius: 10px;
+}
+
+#profile {
+  position: absolute;
+  width: 40vmin;
+  height: 60vmin;
   margin-left: calc((100vw - 40vmin)/2);
   margin-top: calc((100vh - 60vmin)/2);
   border-radius: 10px;
