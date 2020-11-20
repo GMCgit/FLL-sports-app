@@ -43,6 +43,12 @@ function LogIn() {
                       }
                     }
                   });
+                });
+
+              db.collection("users")
+                .doc(doc.id)
+                .update({
+                  lastLogin: new Date(),
                 })
                 .then(() => {
                   window.location = `../../mainPage/main.html`;
@@ -63,5 +69,12 @@ if (
   sessionStorage.setItem("name", localStorage.getItem("name"));
   sessionStorage.setItem("DocName", localStorage.getItem("DocName"));
   sessionStorage.setItem("admin", localStorage.getItem("admin"));
-  window.location = `../../mainPage/main.html`;
+  db.collection("users")
+    .doc(sessionStorage.getItem("DocName"))
+    .update({
+      lastLogin: new Date(),
+    })
+    .then(() => {
+      window.location = `../../mainPage/main.html`;
+    });
 }
