@@ -137,3 +137,17 @@ function removeAdmin() {
     alert("You have to input everything");
   }
 }
+
+function newSport() {
+  let sport = {
+    name: document.getElementById("sportName").value,
+    min: parseInt(document.getElementById("minPlayers").value),
+    max: parseInt(document.getElementById("maxPlayers").value)
+  }
+  
+  db.collection("sports").add(sport);
+
+  document.getElementById("minPlayers").value = "";
+  document.getElementById("maxPlayers").value = "";
+  document.getElementById("sportName").value = "";
+}
