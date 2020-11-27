@@ -233,6 +233,19 @@
           .then((q) => {
             q.forEach((doc) => {
               if (doc.data().name == name.innerHTML) {
+                let joiningObj = {
+                  name: doc.data().name,
+                  field: doc.id,
+                  difficulty: difficulty.value,
+                  sport: doc.data().Sport
+                };
+
+                sessionStorage.setItem("fieldData", JSON.stringify(joiningObj));
+
+                db.collection("users").doc(sessionStorage.getItem("DocName")).update({
+                  inMatch: true
+                })
+
                 if (difficulty.value == "easy") {
                   let newArr = doc.data().easy || [];
                   newArr.push(sessionStorage.getItem("DocName"));

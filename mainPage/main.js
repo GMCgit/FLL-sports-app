@@ -18,3 +18,20 @@ function toMap() {
 function toAdmin() {
   window.location = "../adminPage/admin.html";
 }
+
+db.collection("users")
+  .doc(sessionStorage.getItem("DocName"))
+  .get()
+  .then((doc) => {
+    if (doc.data().inMatch == true) {
+      document.getElementById("inMatch").classList.remove("invis");
+
+      let stuff = JSON.parse(sessionStorage.getItem('fieldData'));
+
+      document.getElementById("inMatchName").innerHTML = stuff.name
+      document.getElementById("inMatchSport").innerHTML = stuff.sport
+
+    } else {
+      document.getElementById("inMatch").classList.add("invis");
+    }
+  });

@@ -3,7 +3,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 70%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #navbar {

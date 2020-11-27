@@ -24,3 +24,33 @@ body {
   width: 0px;
   height: 0px;
 }
+
+#inMatchBg {
+  position: absolute;
+  width: 70vw;
+  height: 60vh;
+  background-color: aliceblue;
+  opacity: 80%;
+  border-radius: 5px;
+  left: 15vw;
+  top: 20vh;
+}
+
+#inMatchContent {
+  position: absolute;
+  width: 70vw;
+  height: 60vh;
+  border-radius: 5px;
+  left: 15vw;
+  top: 20vh;
+  text-align: center;
+}
+
+#inMatchName {
+  font-size: 4vh;
+}
+
+#inMatchSport {
+  margin-top: 2vh;
+  font-size: 3.5vh;
+}
