@@ -145,41 +145,58 @@
         const searchTerm = document.getElementById("userEntered");
 
         let db = firebase.firestore();
-        let user;
+        let user = [];
 
         db.collection("users")
           .get()
           .then((querySearch) => {
             querySearch.forEach((doc) => {
               let Username = doc.data().username;
-              if (Username.startsWith(searchTerm.value)) {
-                user = {
+              if (Username.includes(searchTerm.value)) {
+                user.push({
                   username: Username,
                   docId: doc.id,
                   name: doc.data().name,
-                };
+                });
               }
             });
           })
           .then(() => {
-            let child = document.getElementById("ResButt");
-            child.innerHTML = user.username;
-            child.classList.remove("invis");
-            child.classList.add("btn");
-            child.classList.add("btn-outline-dark");
-            child.classList.add("SearchResult");
-            child.classList.add("btn-lg");
-            document.getElementById("Results").appendChild(child);
-            let obj = { ...user };
-            document.getElementById("DocId").innerHTML = JSON.stringify(obj);
+            let repetitions;
+            if (user.length > 4) {
+              repetitions = 4;
+            } else {
+              repetitions = user.length;
+            }
+            document.getElementById("Results").innerHTML = "";
+            for (let i = 0; i < repetitions; i++) {
+              let child = document.createElement("button");
+              child.innerHTML = user[i].username;
+              child.classList.add("btn");
+              child.classList.add("btn-outline-dark");
+              child.classList.add("SearchResult");
+              child.classList.add("btn-lg");
+              child.value = user[i].docId;
+              child.data = user[i].name;
+              child.onclick = function (e) {
+                goToPerson(this);
+              };
+              document.getElementById("Results").appendChild(child);
+            }
           });
       }
 
-      function goToPerson() {
-        let docId = document.getElementById("DocId").innerHTML;
+      function goToPerson(elm) {
+        let docId = {
+          username: elm.innerText,
+          name: elm.data,
+          docId: elm.value,
+        };
+
+        console.log(JSON.stringify(docId));
 
         sessionStorage.removeItem("docId");
-        sessionStorage.setItem("docId", docId);
+        sessionStorage.setItem("docId", JSON.stringify(docId));
 
         window.location = "../othersProfile/others.html";
       }
