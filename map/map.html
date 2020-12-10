@@ -246,6 +246,7 @@
                   .doc(sessionStorage.getItem("DocName"))
                   .update({
                     inMatch: true,
+                    fieldData: JSON.stringify(joiningObj)
                   });
 
                 if (difficulty.value == "easy") {

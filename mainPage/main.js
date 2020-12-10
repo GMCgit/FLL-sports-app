@@ -24,13 +24,26 @@ db.collection("users")
   .get()
   .then((doc) => {
     if (doc.data().inMatch == true) {
-      document.getElementById("inMatch").classList.remove("invis");
+      if (sessionStorage.getItem("fieldData") == null) {
+        db.collection("users")
+          .doc(sessionStorage.getItem("DocName"))
+          .get()
+          .then((doc) => {
+            document.getElementById("inMatch").classList.remove("invis");
 
-      let stuff = JSON.parse(sessionStorage.getItem('fieldData'));
+            let stuff = JSON.parse(doc.data().fieldData);
 
-      document.getElementById("inMatchName").innerHTML = stuff.name
-      document.getElementById("inMatchSport").innerHTML = stuff.sport
+            document.getElementById("inMatchSport").innerHTML = stuff.sport;
+            document.getElementById("inMatchName").innerHTML = stuff.name;
+          });
+      } else {
+        document.getElementById("inMatch").classList.remove("invis");
 
+        let stuff = JSON.parse(sessionStorage.getItem("fieldData"));
+
+        document.getElementById("inMatchSport").innerHTML = stuff.sport;
+        document.getElementById("inMatchName").innerHTML = stuff.name;
+      }
     } else {
       document.getElementById("inMatch").classList.add("invis");
     }
