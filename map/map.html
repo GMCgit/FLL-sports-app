@@ -197,7 +197,20 @@
             content: contentString,
           });
           marker.addListener("click", () => {
-            document.getElementById("joinBtn").disabled = false;
+            if (sessionStorage.getItem("fieldData") !== null) {
+              document.getElementById("joinBtn").disabled = true;
+            } else {
+              db.collection("users")
+                .doc(sessionStorage.getItem("DocName"))
+                .get()
+                .then((d) => {
+                  if (d.data().inMatch == true) {
+                    document.getElementById("joinBtn").disabled = true;
+                    sessionStorage.setItem("fieldData", d.data().fieldData);
+                  }
+                });
+              document.getElementById("joinBtn").disabled = false;
+            }
             if (activeInfowindow) {
               activeInfowindow.close();
             }
@@ -246,7 +259,7 @@
                   .doc(sessionStorage.getItem("DocName"))
                   .update({
                     inMatch: true,
-                    fieldData: JSON.stringify(joiningObj)
+                    fieldData: JSON.stringify(joiningObj),
                   });
 
                 if (difficulty.value == "easy") {
@@ -268,6 +281,7 @@
                     hard: newArr,
                   });
                 }
+                alert("Success!");
               }
             });
           });
