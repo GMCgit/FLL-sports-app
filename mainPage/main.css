@@ -55,6 +55,11 @@ body {
   font-size: 3.5vh;
 }
 
+#inMatchStatus {
+  margin-top: 2vh;
+  font-size: 3vh;
+}
+
 #leaveMatch {
   margin-top: 1vh;
   border-radius: 5px;

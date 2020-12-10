@@ -49,13 +49,14 @@ function leaveMatch() {
             hard: doc.data().hard.splice(index, 1),
           });
       }
-    }).then(() => {
+    })
+    .then(() => {
       sessionStorage.removeItem("fieldData");
       document.getElementById("inMatch").classList.add("invis");
-      db.collection('users').doc(sessionStorage.getItem("DocName")).update({
+      db.collection("users").doc(sessionStorage.getItem("DocName")).update({
         inMatch: false,
-        fieldData: ""
-      })
+        fieldData: "",
+      });
     });
 }
 
@@ -77,6 +78,8 @@ db.collection("users")
             document.getElementById("inMatchName").innerHTML = stuff.name;
 
             sessionStorage.setItem("fieldData", doc.data().fieldData);
+
+            sprotStatus();
           });
       } else {
         document.getElementById("inMatch").classList.remove("invis");
@@ -85,8 +88,36 @@ db.collection("users")
 
         document.getElementById("inMatchSport").innerHTML = stuff.sport;
         document.getElementById("inMatchName").innerHTML = stuff.name;
+
+        sprotStatus();
       }
     } else {
       document.getElementById("inMatch").classList.add("invis");
     }
   });
+
+function sprotStatus() {
+  let stuff = JSON.parse(sessionStorage.getItem("fieldData"));
+  let Max = 0;
+  db.collection("sports")
+    .get()
+    .then((qS) => {
+      qS.forEach((m) => {
+        if (m.data().name == stuff.sprort) {
+          Max = m.data().max;
+        }
+      });
+    })
+    .then(() => {
+      db.collection("fields")
+        .doc(stuff.field)
+        .get()
+        .then((doc) => {
+          if (stuff.difficulty == "easy") {
+            document.getElementById("inMatchStatus").innerHTML = `${
+              doc.data().easy.length
+            } / ${Max} players ready`;
+          }
+        });
+    });
+}
