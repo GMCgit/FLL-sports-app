@@ -6,12 +6,14 @@ function LogIn() {
   if (username.value == "" || password.value == "") {
     alert("You didn't fill in all the fields");
   } else {
+    let loggedIn = false;
     db.collection("users")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           if (username.value == doc.data().username) {
             if (password.value == doc.data().password) {
+              loggedIn = true;
               sessionStorage.setItem("username", doc.data().username);
               sessionStorage.setItem("password", doc.data().password);
               sessionStorage.setItem("name", doc.data().name);
@@ -56,6 +58,11 @@ function LogIn() {
             }
           }
         });
+      })
+      .then(() => {
+        if (!loggedIn) {
+          alert("Username or password is wrong.");
+        }
       });
   }
 }
