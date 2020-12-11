@@ -12,12 +12,22 @@ body {
 }
 
 .loginDiv {
+  position: absolute;
+  width: 40vmin;
+  height: 60vmin;
+  left: calc((100vw - 40vmin)/2);
+  top: calc((100vh - 60vmin)/2);
+  border-radius: 10px;
+}
+
+.loginDivBg {
+  position: absolute;
   background-color: aliceblue;
   width: 40vmin;
   height: 60vmin;
   opacity: 70%;
-  margin-left: calc((100vw - 40vmin)/2);
-  margin-top: calc((100vh - 60vmin)/2);
+  left: calc((100vw - 40vmin)/2);
+  top: calc((100vh - 60vmin)/2);
   border-radius: 10px;
 }
 
