@@ -16,8 +16,22 @@
     <div id="content">
       <div id="friendsBg"></div>
       <div id="friends">
-        <div id="friends_list"></div>
-        <div id="blocked_list"></div>
+        <button
+          id="friend_button"
+          class="button"
+          onclick="friends()"
+        >
+          Friends
+        </button>
+        <button
+          id="blocked_button"
+          class="button"
+          onclick="blocked()"
+        >
+          Blocked
+        </button>
+        <div id="friends_list" class="invis fbbg"></div>
+        <div id="blocked_list" class="invis fbbg"></div>
       </div>
 
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">

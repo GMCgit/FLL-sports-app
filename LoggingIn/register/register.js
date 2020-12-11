@@ -22,6 +22,9 @@ function register() {
           username: username.value,
           password: password.value,
           name: name.value,
+          inMatch: false,
+          blocked: [],
+          friends: [],
         })
         .then((docRef) => {
           console.log("Success!");

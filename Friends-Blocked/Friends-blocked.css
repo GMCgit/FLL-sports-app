@@ -1,5 +1,5 @@
 body {
-  background-image: url('./images/main.jpg');
+  background-image: url("./images/main.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -25,26 +25,68 @@ body {
   height: 0px;
 }
 
-#friendsBg {
-  --width: 60vw;
+.text {
+  text-align: center;
+  font: 4vh;
+}
+
+:root {
+  --width: 70vw;
   --height: 60vh;
+  --offset: 8vw;
+}
+
+#friendsBg {
   position: absolute;
   width: var(--width);
   height: var(--height);
   background-color: aliceblue;
   opacity: 80%;
-  left: calc((100vw - var(--width))/2);
-  top: calc((100vh - var(--height))/2);
+  left: calc((100vw - var(--width)) / 2);
+  top: calc((100vh - var(--height)) / 2);
   border-radius: 5px;
 }
 
 #friends {
-  --width: 60vw;
-  --height: 60vh;
   position: absolute;
   width: var(--width);
   height: var(--height);
-  left: calc((100vw - var(--width))/2);
-  top: calc((100vh - var(--height))/2);
+  left: calc((100vw - var(--width)) / 2);
+  top: calc((100vh - var(--height)) / 2);
   border-radius: 5px;
+}
+
+.button {
+  margin-top: 1vh;
+  width: calc((var(--width) - var(--offset) * 1.5) / 2);
+  margin-left: calc(var(--offset) / 2);
+  border: 0;
+  border-radius: 10px;
+  padding-bottom: calc(var(--height) - var(--height) / 1.1);
+}
+
+.btn-active {
+  background-color: aliceblue;
+}
+
+.btn-unactive {
+  background-color: rgb(202, 210, 216);
+}
+
+.fbbg {
+  position: absolute;
+  top: calc((var(--height) - var(--height) / 1.1) * 0.8);
+  width: calc((var(--width) - var(--offset)) + 0.4vw);
+  height: calc((var(--height) - var(--offset) * 1.5));
+  background-color: aliceblue;
+  margin-left: calc(var(--offset) / 2);
+  border: 0;
+  border-radius: 10px;
+  padding-bottom: calc(var(--height) - var(--height) / 1.1);
+  overflow-y: scroll;
+}
+
+.button-others {
+  width: calc(((var(--width) - var(--offset)) + 0.4vw) * 0.8);
+  margin-left: calc((var(--width) - ((var(--width) - var(--offset)) + 0.4vw) * 0.8)/4);
 }

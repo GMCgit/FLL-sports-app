@@ -5,7 +5,7 @@ let otherObj = JSON.parse(sessionStorage.getItem("docId"));
 
 username.innerHTML = sessionStorage.getItem("username");
 
-let profile = document.getElementById("profile");
+let profile = document.getElementById("profileText");
 
 let otherUser_user = document.createElement("div");
 otherUser_user.classList.add("text");
@@ -37,7 +37,7 @@ db.collection("users")
       profile.appendChild(otherUser_sport);
     }
     if (bio !== undefined) {
-      let otherUser_bio= document.createElement("div");
+      let otherUser_bio = document.createElement("div");
       otherUser_bio.classList.add("text");
       otherUser_bio.innerHTML = `Biography: ${bio}`;
       profile.appendChild(otherUser_bio);
@@ -63,3 +63,125 @@ if (sessionStorage.getItem("admin") == "true") {
 function toAdmin() {
   window.location = "../adminPage/admin.html";
 }
+
+function goToFriends() {
+  sessionStorage.setItem("friend", true);
+  window.location = "../Friends-Blocked/Friends-blocked.html";
+}
+
+function goToBlocked() {
+  sessionStorage.setItem("friend", false);
+  window.location = "../Friends-Blocked/Friends-blocked.html";
+}
+
+function addFriend() {
+  if (
+    JSON.parse(sessionStorage.getItem("docId")).docId !=
+    sessionStorage.getItem("DocName")
+  ) {
+    db.collection("users")
+      .doc(sessionStorage.getItem("DocName"))
+      .get()
+      .then((check) => {
+        let arr = check.data().blocked;
+        if (arr.includes(JSON.parse(sessionStorage.getItem("docId")).docId)) {
+          alert("no");
+        } else {
+          db.collection("users")
+            .doc(sessionStorage.getItem("DocName"))
+            .update({
+              friends: firebase.firestore.FieldValue.arrayUnion(
+                JSON.parse(sessionStorage.getItem("docId")).docId
+              ),
+            });
+          document.getElementById("addFriend").classList.add("invis");
+          document.getElementById("removeFriend").classList.remove("invis");
+          alert(
+            JSON.parse(sessionStorage.getItem("docId")).username +
+              " is now your friend"
+          );
+        }
+      });
+  } else {
+    alert("no");
+  }
+}
+
+function removeFriend() {
+  db.collection("users")
+    .doc(sessionStorage.getItem("DocName"))
+    .update({
+      friends: firebase.firestore.FieldValue.arrayRemove(
+        JSON.parse(sessionStorage.getItem("docId")).docId
+      ),
+    });
+  document.getElementById("addFriend").classList.remove("invis");
+  document.getElementById("removeFriend").classList.add("invis");
+  alert(
+    JSON.parse(sessionStorage.getItem("docId")).username + " is not your friend"
+  );
+}
+
+function addBlocked() {
+  if (
+    JSON.parse(sessionStorage.getItem("docId")).docId !=
+    sessionStorage.getItem("DocName")
+  ) {
+    db.collection("users")
+      .doc(sessionStorage.getItem("DocName"))
+      .get()
+      .then((check) => {
+        let arr = check.data().friends;
+        if (arr.includes(JSON.parse(sessionStorage.getItem("docId")).docId)) {
+          alert("no");
+        } else {
+          db.collection("users")
+            .doc(sessionStorage.getItem("DocName"))
+            .update({
+              blocked: firebase.firestore.FieldValue.arrayUnion(
+                JSON.parse(sessionStorage.getItem("docId")).docId
+              ),
+            });
+          document.getElementById("addBlocked").classList.add("invis");
+          document.getElementById("removeBlocked").classList.remove("invis");
+          alert(
+            JSON.parse(sessionStorage.getItem("docId")).username +
+              " is now blocked"
+          );
+        }
+      });
+  } else {
+    alert("no");
+  }
+}
+
+function removeBlocked() {
+  db.collection("users")
+    .doc(sessionStorage.getItem("DocName"))
+    .update({
+      blocked: firebase.firestore.FieldValue.arrayRemove(
+        JSON.parse(sessionStorage.getItem("docId")).docId
+      ),
+    });
+  document.getElementById("addBlocked").classList.remove("invis");
+  document.getElementById("removeBlocked").classList.add("invis");
+  alert(
+    JSON.parse(sessionStorage.getItem("docId")).username + " is now unblocked"
+  );
+}
+
+db.collection("users")
+  .doc(sessionStorage.getItem("DocName"))
+  .get()
+  .then((check) => {
+    let arr = check.data().blocked;
+    if (arr.includes(JSON.parse(sessionStorage.getItem("docId")).docId)) {
+      document.getElementById("addBlocked").classList.add("invis");
+      document.getElementById("removeBlocked").classList.remove("invis");
+    }
+    arr = check.data().friends;
+    if (arr.includes(JSON.parse(sessionStorage.getItem("docId")).docId)) {
+      document.getElementById("addFriend").classList.add("invis");
+      document.getElementById("removeFriend").classList.remove("invis");
+    }
+  });

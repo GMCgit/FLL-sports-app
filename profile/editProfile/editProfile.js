@@ -157,3 +157,13 @@ function bio_change() {
     sessionStorage.setItem("bio", document.getElementById("bio").value);
   }
 }
+
+function goToFriends() {
+  sessionStorage.setItem("friend", true);
+  window.location = "../../Friends-Blocked/Friends-blocked.html";
+}
+
+function goToBlocked() {
+  sessionStorage.setItem("friend", false);
+  window.location = "../../Friends-Blocked/Friends-blocked.html";
+}

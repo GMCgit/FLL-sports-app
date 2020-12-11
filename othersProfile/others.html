@@ -16,7 +16,42 @@
   <body>
     <div id="content">
       <div id="profileBg"></div>
-      <div id="profile" class="text"></div>
+      <div id="profile" class="text">
+        <div id="profileText"></div>
+        <div id="btnW">
+          <button
+            id="addFriend"
+            class="btn btn-outline-primary fbtn"
+            onclick="addFriend()"
+          >
+            <strong>Add friend</strong>
+          </button>
+          <button
+            id="removeFriend"
+            class="btn btn-outline-primary invis fbtn"
+            onclick="removeFriend()"
+          >
+            <strong>Remove friend</strong>
+          </button>
+
+          <hr />
+
+          <button
+            id="addBlocked"
+            class="btn btn-outline-danger bbtn"
+            onclick="addBlocked()"
+          >
+            <strong> Block </strong>
+          </button>
+          <button
+            id="removeBlocked"
+            class="btn btn-outline-danger invis bbtn"
+            onclick="removeBlocked()"
+          >
+            <strong> Unblock </strong>
+          </button>
+        </div>
+      </div>
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
         <div id="username" class="navbar-brand"></div>
         <button
@@ -60,8 +95,12 @@
                 Other people
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="../Friends-Blocked/Friends-blocked.html">My friends</a>
-                <a class="dropdown-item" href="../Friends-Blocked/Friends-blocked.html">Blocked people</a>
+                <a class="dropdown-item btn" onclick="goToFriends()"
+                  >My friends</a
+                >
+                <a class="dropdown-item btn" onclick="goToBlocked()"
+                  >Blocked people</a
+                >
                 <div class="dropdown-divider"></div>
                 <div id="searchPeople">
                   <div class="form-inline my-2 my-lg-0">
