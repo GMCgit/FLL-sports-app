@@ -1,10 +1,14 @@
+:root {
+  --elm-width: 60vw;
+}
+
 .SearchResult {
   border: 1px solid black;
   border-radius: 5px;
-  width: 60vw;
   height: 5vh;
   text-align: center;
-  margin-left: calc((100vw - 60vw) / 2);
+  width: var(--elm-width);
+  margin-left: calc((100vw - var(--elm-width)) / 2);
   margin-top: 10px;
   margin-bottom: 10px;
 }
