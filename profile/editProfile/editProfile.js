@@ -134,7 +134,7 @@ function fav_sports() {
 }
 
 function update_age() {
-  if (Number(document.getElementById("age").value) > 0) {
+  if (Number(document.getElementById("age").value) > 0 && Number(document.getElementById("age").value) % 1 == 0) {
     db.collection("users")
       .doc(sessionStorage.getItem("DocName"))
       .update({
