@@ -1,0 +1,50 @@
+body {
+  background-image: url('./images/main.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+#navbar {
+  border-radius: 5px;
+}
+
+#searchPeople {
+  margin-left: 5px;
+}
+
+#content {
+  width: 100vw;
+  height: 100vh;
+}
+
+.invis {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+
+#friendsBg {
+  --width: 60vw;
+  --height: 60vh;
+  position: absolute;
+  width: var(--width);
+  height: var(--height);
+  background-color: aliceblue;
+  opacity: 80%;
+  left: calc((100vw - var(--width))/2);
+  top: calc((100vh - var(--height))/2);
+  border-radius: 5px;
+}
+
+#friends {
+  --width: 60vw;
+  --height: 60vh;
+  position: absolute;
+  width: var(--width);
+  height: var(--height);
+  left: calc((100vw - var(--width))/2);
+  top: calc((100vh - var(--height))/2);
+  border-radius: 5px;
+}
