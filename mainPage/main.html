@@ -22,6 +22,15 @@
           <div id="inMatchStatus"></div>
           <button
             id="leaveMatch"
+            onclick="newInvite()"
+            class="btn btn-outline-primary"
+          >
+            New invite
+          </button>
+          <div id="inviteLink"></div>
+          <hr />
+          <button
+            id="leaveMatch"
             onclick="leaveMatch()"
             class="btn btn-outline-danger"
           >
@@ -72,8 +81,12 @@
                 Other people
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item btn" onclick="goToFriends()">My friends</a>
-                <a class="dropdown-item btn" onclick="goToBlocked()">Blocked people</a>
+                <a class="dropdown-item btn" onclick="goToFriends()"
+                  >My friends</a
+                >
+                <a class="dropdown-item btn" onclick="goToBlocked()"
+                  >Blocked people</a
+                >
                 <div class="dropdown-divider"></div>
                 <div id="searchPeople">
                   <div class="form-inline my-2 my-lg-0">

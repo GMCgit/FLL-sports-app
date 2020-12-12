@@ -3,6 +3,18 @@ const username = document.getElementById("username");
 
 let otherObj = JSON.parse(sessionStorage.getItem("docId"));
 
+if (otherObj.name == "") {
+  db.collection("users")
+    .doc(otherObj.docId)
+    .get()
+    .then((q) => {
+      sessionStorage.setItem("tempName", q.data().name);
+    });
+  otherObj.name = sessionStorage.getItem("tempName");
+  sessionStorage.removeItem("tempName");
+  alert(otherObj.name);
+}
+
 username.innerHTML = sessionStorage.getItem("username");
 
 let profile = document.getElementById("profileText");

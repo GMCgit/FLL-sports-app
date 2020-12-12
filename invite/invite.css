@@ -1,0 +1,56 @@
+body {
+  background-image: url('./images/main.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+#navbar {
+  border-radius: 5px;
+}
+
+#searchPeople {
+  margin-left: 5px;
+}
+
+#content {
+  width: 100vw;
+  height: 100vh;
+}
+
+.invis {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+
+#inviteBg {
+  position: absolute;
+  width: 70vw;
+  height: 60vh;
+  background-color: aliceblue;
+  opacity: 80%;
+  border-radius: 5px;
+  left: 15vw;
+  top: 20vh;
+}
+
+#invite {
+  position: absolute;
+  width: 70vw;
+  height: 60vh;
+  border-radius: 5px;
+  left: 15vw;
+  top: 20vh;
+  text-align: center;
+}
+
+#Header {
+  font-size: 4vh;
+}
+
+#joinBtn {
+  font-size: 2vh;
+  width: 10vh;
+}

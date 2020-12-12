@@ -1,6 +1,6 @@
 body {
   background-image: url('./images/bg.jpg');
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -24,7 +24,7 @@ body {
 #mapBg {
   position: absolute;
   width: 74vw;
-  height: 78vh;
+  height: 115vh;
   border-radius: 5px;
   background-color: aliceblue;
   left: calc((100vw - 74vw) / 2);
@@ -54,8 +54,13 @@ body {
   height: 0;
 }
 
+.suggest-in {
+  margin-bottom: 7px;
+  border-radius: 4px;
+}
+
 #joinBtn {
-  height: 3vh;
+  height: 5vh;
   font-size: 1.7vh;
   margin-left: 0.5vmin;
 }

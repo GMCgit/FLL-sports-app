@@ -19,6 +19,27 @@ function toAdmin() {
   window.location = "../adminPage/admin.html";
 }
 
+function newInvite() {
+  db.collection("invites")
+    .add({
+      fieldData: sessionStorage.getItem("fieldData"),
+      owner: sessionStorage.getItem("DocName"),
+    })
+    .then(() => {
+      db.collection("invites")
+        .get()
+        .then((q) => {
+          q.forEach((invite) => {
+            if (invite.data().owner == sessionStorage.getItem("DocName")) {
+              document.getElementById(
+                "inviteLink"
+              ).innerHTML = `https://gmcgit.github.io/FLL-sports-app/invite/invite.html?link=${invite.id}`;
+            }
+          });
+        });
+    });
+}
+
 function leaveMatch() {
   let stuff = JSON.parse(sessionStorage.getItem("fieldData"));
   db.collection("fields")
@@ -53,10 +74,23 @@ function leaveMatch() {
     .then(() => {
       sessionStorage.removeItem("fieldData");
       document.getElementById("inMatch").classList.add("invis");
-      db.collection("users").doc(sessionStorage.getItem("DocName")).update({
-        inMatch: false,
-        fieldData: "",
-      });
+      db.collection("users")
+        .doc(sessionStorage.getItem("DocName"))
+        .update({
+          inMatch: false,
+          fieldData: "",
+        })
+        .then(() => {
+          db.collection("invites")
+            .get()
+            .then((q) => {
+              q.forEach((invite) => {
+                if (invite.data().owner == sessionStorage.getItem("DocName")) {
+                  db.collection("invites").doc(invite.id).delete();
+                }
+              });
+            });
+        });
     });
 }
 

@@ -53,5 +53,5 @@ function goToPerson(elm) {
   sessionStorage.removeItem("docId");
   sessionStorage.setItem("docId", JSON.stringify(docId));
 
-  window.location = "../othersProfile/others.html";
+  window.location = "../../othersProfile/others.html";
 }

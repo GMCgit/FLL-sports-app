@@ -3,71 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit your profile</title>
-    <link rel="stylesheet" type="text/css" href="editProfile.css" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="invite.css" />
   </head>
   <body>
     <div id="content">
-      <div id="profileBg"></div>
-      <div id="profile" class="form text-area">
-        <br />
-        <div id="Username"></div>
-        <input type="text" id="new_username" placeholder="Enter new username" />
-        <br />
-        <button class="btn btn-primary" onclick="change_username()">
-          Change username
-        </button>
-        <hr />
-
-        <div id="Name"></div>
-        <input type="text" id="new_name" placeholder="Enter new name" />
-        <br />
-        <button class="btn btn-primary" onclick="change_name()">
-          Change name
-        </button>
-        <hr />
-
-        <div>Change password</div>
-        <input type="password" id="new_pass" placeholder="Enter new password" />
-        <input
-          type="password"
-          id="old_pass"
-          placeholder="Enter current password"
-        />
-        <br />
-        <button class="btn btn-danger" onclick="PassChange()">
-          Change password
-        </button>
-        <hr />
-
-        <div>Change bio</div>
-        <input type="text" id="bio" placeholder="add bio" />
-        <button class="btn btn-primary" onclick="bio_change()">bio</button>
-        <hr />
-
-        <label for="sports">Optional:</label>
-        <br />
-        <input
-          type="text"
-          id="sports"
-          name="sports"
-          placeholder="change favourite sports"
-        />
-        <button class="btn btn-primary" onclick="fav_sports()">
-          Update sports
-        </button>
-        <br />
-        <input
-          type="number"
-          id="age"
-          name="age"
-          placeholder="change your age"
-        />
-        <button class="btn btn-primary" onclick="update_age()">
-          update age
-        </button>
-        <hr />
+      
+      <div id="inviteBg"></div>
+      <div id="invite">
+        <div id="inviteRes"></div>
+        <div id="inviteBtn" class="invis">
+          <div id="Header"></div>
+          <button id="joinBtn" class="btn btn-outline-primary" onclick="joinMatch()">Join</button>
+        </div>
       </div>
+
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
         <div id="username" class="navbar-brand"></div>
         <button
@@ -89,7 +45,7 @@
             </li>
             <li class="nav-item">
               <button class="nav-link btn" onclick="toProfile()">
-                My Profile
+                My Profile <span class="sr-only">(current)</span>
               </button>
             </li>
             <li class="nav-item">
@@ -111,8 +67,12 @@
                 Other people
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item btn" onclick="goToFriends()">My friends</a>
-                <a class="dropdown-item btn" onclick="goToBlocked()">Blocked people</a>
+                <a class="dropdown-item btn" onclick="goToFriends()"
+                  >My friends</a
+                >
+                <a class="dropdown-item btn" onclick="goToBlocked()"
+                  >Blocked people</a
+                >
                 <div class="dropdown-divider"></div>
                 <div id="searchPeople">
                   <div class="form-inline my-2 my-lg-0">
@@ -134,21 +94,13 @@
                     <hr />
                   </div>
                 </div>
-                <div id="Results">
-                  <button
-                    id="ResButt"
-                    class="invis"
-                    onclick="goToPersonSpecial()"
-                  ></button>
-                  <div id="DocId" class="invis"></div>
-                </div>
+                <div id="Results"></div>
               </div>
             </li>
           </ul>
         </div>
       </nav>
     </div>
-
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -192,9 +144,9 @@
       firebase.analytics();
     </script>
 
-    <script src="../../Search_Special/search_special.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../search/search.css" />
+    <script src="../search/search.js"></script>
+    <link rel="stylesheet" type="text/css" href="../search/search.css" />
 
-    <script src="./editProfile.js" defer></script>
+    <script src="./invite.js" defer></script>
   </body>
 </html>
