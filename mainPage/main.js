@@ -19,6 +19,24 @@ function toAdmin() {
   window.location = "../adminPage/admin.html";
 }
 
+function sport_suggest() {
+  let name = document.getElementById("name").value;
+  let max = document.getElementById("max").value;
+  let min = document.getElementById("min").value;
+  if (name !== "" && max !== "" && min !== "") {
+    db.collection("sport_suggestions")
+      .add({
+        name: name,
+        max: max,
+        min: min,
+        comment: document.getElementById("comment").value,
+        user_doc: sessionStorage.getItem("DocName"),
+        user_name: sessionStorage.getItem("name"),
+      })
+      .then(alert("succes"));
+  }
+}
+
 function newInvite() {
   db.collection("invites")
     .add({
@@ -72,23 +90,63 @@ function leaveMatch() {
       }
     })
     .then(() => {
-      sessionStorage.removeItem("fieldData");
-      document.getElementById("inMatch").classList.add("invis");
-      db.collection("users")
-        .doc(sessionStorage.getItem("DocName"))
-        .update({
-          inMatch: false,
-          fieldData: "",
+      db.collection("fields")
+        .doc(stuff.field)
+        .get()
+        .then((f) => {
+          if (stuff.difficulty == "easy") {
+            let arr = f.data().easyB;
+            arr.forEach((b) => {
+              if (JSON.parse(b).owner == sessionStorage.getItem("DocName")) {
+                arr.splice(arr.indexOf(b), 1);
+              }
+            });
+            db.collection("fields").doc(stuff.field).update({
+              easyB: arr,
+            });
+          } else if (stuff.difficulty == "medium") {
+            let arr = f.data().mediumB;
+            arr.forEach((b) => {
+              if (JSON.parse(b).owner == sessionStorage.getItem("DocName")) {
+                arr.splice(arr.indexOf(b), 1);
+              }
+            });
+            db.collection("fields").doc(stuff.field).update({
+              mediumB: arr,
+            });
+          } else if (stuff.difficulty == "hard") {
+            let arr = f.data().hardB;
+            arr.forEach((b) => {
+              if (JSON.parse(b).owner == sessionStorage.getItem("DocName")) {
+                arr.splice(arr.indexOf(b), 1);
+              }
+            });
+            db.collection("fields").doc(stuff.field).update({
+              hardB: arr,
+            });
+          }
         })
         .then(() => {
-          db.collection("invites")
-            .get()
-            .then((q) => {
-              q.forEach((invite) => {
-                if (invite.data().owner == sessionStorage.getItem("DocName")) {
-                  db.collection("invites").doc(invite.id).delete();
-                }
-              });
+          sessionStorage.removeItem("fieldData");
+          document.getElementById("inMatch").classList.add("invis");
+          db.collection("users")
+            .doc(sessionStorage.getItem("DocName"))
+            .update({
+              inMatch: false,
+              fieldData: "",
+            })
+            .then(() => {
+              db.collection("invites")
+                .get()
+                .then((q) => {
+                  q.forEach((invite) => {
+                    if (
+                      invite.data().owner == sessionStorage.getItem("DocName")
+                    ) {
+                      db.collection("invites").doc(invite.id).delete();
+                    }
+                  });
+                });
             });
         });
     });

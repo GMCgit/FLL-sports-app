@@ -12,7 +12,6 @@ if (otherObj.name == "") {
     });
   otherObj.name = sessionStorage.getItem("tempName");
   sessionStorage.removeItem("tempName");
-  alert(otherObj.name);
 }
 
 username.innerHTML = sessionStorage.getItem("username");

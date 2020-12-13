@@ -14,28 +14,38 @@
   </head>
   <body>
     <div id="content">
-      <div id="inMatch" class="invis">
-        <div id="inMatchBg"></div>
-        <div id="inMatchContent">
-          <div id="inMatchName"></div>
-          <div id="inMatchSport"></div>
-          <div id="inMatchStatus"></div>
-          <button
-            id="leaveMatch"
-            onclick="newInvite()"
-            class="btn btn-outline-primary"
-          >
-            New invite
-          </button>
-          <div id="inviteLink"></div>
-          <hr />
-          <button
-            id="leaveMatch"
-            onclick="leaveMatch()"
-            class="btn btn-outline-danger"
-          >
-            Leave match
-          </button>
+      <div id="mainBg"></div>
+      <div id="main">
+        <div id="suggestions">
+          <h3>suggest a sport</h3>
+          <input type="text" id="name" class="sport_suggestion" placeholder="sport name">
+          <input type="number" id="min" class="sport_suggestion" placeholder="min people">
+          <input type="number" id="max" class="sport_suggestion" placeholder="max people (leave blank if unlimited)">
+          <input type="text" id="comment" class="sport_suggestion" placeholder="comment (optional)">
+          <button class="btn btn-primary" onclick="sport_suggest()">Suggest</button>
+        </div>
+        <div id="inMatch" class="invis">
+          <div id="inMatchContent">
+            <div id="inMatchName"></div>
+            <div id="inMatchSport"></div>
+            <div id="inMatchStatus"></div>
+            <button
+              id="leaveMatch"
+              onclick="newInvite()"
+              class="btn btn-outline-primary"
+            >
+              New invite
+            </button>
+            <div id="inviteLink"></div>
+            <hr />
+            <button
+              id="leaveMatch"
+              onclick="leaveMatch()"
+              class="btn btn-outline-danger"
+            >
+              Leave match
+            </button>
+          </div>
         </div>
       </div>
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
