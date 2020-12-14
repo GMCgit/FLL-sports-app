@@ -41,15 +41,8 @@ document.onload = getChs();
 
 function getChs() {
   chs = [];
-  let newBtn = document.createElement("button");
-  newBtn.innerText = "New Chat";
-  newBtn.classList.add("btn");
-  newBtn.classList.add("btn-outline-success");
-  newBtn.classList.add("button");
-  newBtn.id = "newChat";
-  newBtn.addEventListener("click", newChatIn)
-  selector.innerHTML = "";
-  selector.appendChild(newBtn);
+
+  selector.innerHTML = ""
 
   db.collection("chat")
     .get()
@@ -94,6 +87,9 @@ function selectChat(el) {
   sessionStorage.setItem("chatCh", JSON.parse(el.data).id);
   document.getElementById("textingArea").classList.remove("invis");
   document.getElementById("newChatT").classList.add("invis");
+  db.collection("chat").doc(sessionStorage.getItem("chatCh")).get().then((doc) => {
+    newMsg(doc)
+  })
 }
 
 function newChatIn() {
@@ -153,6 +149,7 @@ function createChat() {
 }
 
 function newMsg(doc) {
+  if (doc.data() == undefined) return;
   let area = document.getElementById("msgs");
   let msgs = doc.data().msgs;
 

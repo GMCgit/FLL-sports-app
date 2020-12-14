@@ -61,7 +61,7 @@ body {
   height: 5vh;
 }
 
-#chatSelector {
+#chatSelectorOuter {
   border-right: 1px solid black;
   overflow-y: auto;
 }
@@ -73,7 +73,7 @@ body {
 #sendMsg {
   float: left;
   position: absolute;
-  bottom: 0;
+  bottom: 1vh;
   width: calc(80vw * 0.66);
   height: calc(80vh * 0.05);
   text-align: left;
@@ -88,9 +88,11 @@ body {
 }
 
 #sendMsg > input {
-  width: calc(80vw * 0.66 * 0.7);
+  width: calc(80vw * 0.66 * 0.70);
+  font-size: 2vmax;
 }
 
 #sendMsg > button {
-  width: calc(80vw * 0.66 * 0.28);
+  width: calc(80vw * 0.66 * 0.25);
+  font-size: 2vmax;
 }

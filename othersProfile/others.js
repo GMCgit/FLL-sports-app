@@ -8,10 +8,11 @@ if (otherObj.name == "") {
     .doc(otherObj.docId)
     .get()
     .then((q) => {
-      sessionStorage.setItem("tempName", q.data().name);
+      let otherUser_name = document.createElement("div");
+      otherUser_name.classList.add("text");
+      otherUser_name.innerHTML = `Name: ${q.data().name}`;
+      profile.appendChild(otherUser_name);
     });
-  otherObj.name = sessionStorage.getItem("tempName");
-  sessionStorage.removeItem("tempName");
 }
 
 username.innerHTML = sessionStorage.getItem("username");
@@ -23,10 +24,12 @@ otherUser_user.classList.add("text");
 otherUser_user.innerHTML = `Username: ${otherObj.username}`;
 profile.appendChild(otherUser_user);
 
-let otherUser_name = document.createElement("div");
-otherUser_name.classList.add("text");
-otherUser_name.innerHTML = `Name: ${otherObj.name}`;
-profile.appendChild(otherUser_name);
+if (otherObj.name != "") {
+  let otherUser_name = document.createElement("div");
+  otherUser_name.classList.add("text");
+  otherUser_name.innerHTML = `Name: ${otherObj.name}`;
+  profile.appendChild(otherUser_name);
+}
 
 db.collection("users")
   .doc(JSON.parse(sessionStorage.getItem("docId")).docId)

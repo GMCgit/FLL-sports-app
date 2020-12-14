@@ -27,7 +27,7 @@ function sport_suggest() {
   let name = document.getElementById("name").value;
   let max = document.getElementById("max").value;
   let min = document.getElementById("min").value;
-  if (name !== "" && max !== "" && min !== "" && min > 0 && max >= min) {
+  if (name !== "" && max !== "" && min !== "" && min > 0 && max >= min && min % 1 == 0 && max % 1 == 0 && min < 50) {
     db.collection("sport_suggestions")
       .add({
         name: name,

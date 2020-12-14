@@ -16,7 +16,7 @@
     <div id="content">
       <div id="chatBg"></div>
       <div id="chat">
-        <div id="chatSelector">
+        <div id="chatSelectorOuter">
           <button
             id="newChat"
             class="btn btn-outline-success button"
@@ -24,6 +24,7 @@
           >
             New Chat
           </button>
+          <div id="chatSelector"></div>
         </div>
         <div id="chatTalk">
           <div id="newChatT" class="invis">
@@ -56,7 +57,9 @@
                 placeholder="New message"
                 class="new_group_input"
               />
-              <button onclick="sendMsg()" class="btn btn-outline-success">Send msg</button>
+              <button onclick="sendMsg()" class="btn btn-outline-success">
+                Send
+              </button>
             </div>
           </div>
         </div>
