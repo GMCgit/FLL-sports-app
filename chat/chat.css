@@ -73,26 +73,61 @@ body {
 #sendMsg {
   float: left;
   position: absolute;
-  bottom: 1vh;
+  bottom: 0;
   width: calc(80vw * 0.66);
   height: calc(80vh * 0.05);
-  text-align: left;
 }
 
 #msgs {
-  width: calc(80vw*0.66);
+  width: calc(80vw * 0.66);
   height: calc(80vh * 0.95);
   position: absolute;
   text-align: left;
-  margin-left: 1vw
+  overflow-y: auto;
+  margin-left: 1vw;
+  display: block;
 }
 
 #sendMsg > input {
-  width: calc(80vw * 0.66 * 0.70);
+  width: calc(80vw * 0.66 * 0.7);
+  height: 4vh;
   font-size: 2vmax;
 }
 
 #sendMsg > button {
+  float: right;
   width: calc(80vw * 0.66 * 0.25);
-  font-size: 2vmax;
+  height: 4vh;
+  margin-bottom: 0;
+  font-size: 2vh;
+  text-align: center;
+}
+
+.myMsg {
+  margin-left: calc(80vw * 0.66 - 35vw);
+  margin-right: 3vw;
+  max-width: 30vw;
+  min-height: 3vh;
+  background-color: rgb(204, 231, 255);
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 1vh;
+}
+
+.name {
+  font-weight: bold;
+  margin-left: 1vw;
+}
+
+.content {
+  margin-left: 1vw;
+}
+
+.otherMsg {
+  max-width: 30vw;
+  min-height: 3vh;
+  background-color: rgb(228, 243, 255);
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 1vh;
 }

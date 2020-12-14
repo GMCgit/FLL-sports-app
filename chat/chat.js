@@ -42,7 +42,7 @@ document.onload = getChs();
 function getChs() {
   chs = [];
 
-  selector.innerHTML = ""
+  selector.innerHTML = "";
 
   db.collection("chat")
     .get()
@@ -87,9 +87,12 @@ function selectChat(el) {
   sessionStorage.setItem("chatCh", JSON.parse(el.data).id);
   document.getElementById("textingArea").classList.remove("invis");
   document.getElementById("newChatT").classList.add("invis");
-  db.collection("chat").doc(sessionStorage.getItem("chatCh")).get().then((doc) => {
-    newMsg(doc)
-  })
+  db.collection("chat")
+    .doc(sessionStorage.getItem("chatCh"))
+    .get()
+    .then((doc) => {
+      newMsg(doc);
+    });
 }
 
 function newChatIn() {
@@ -167,18 +170,39 @@ function newMsg(doc) {
   };
   topDiv.appendChild(del);
   area.appendChild(topDiv);
+  area.appendChild(document.createElement("hr"));
 
   msgs.forEach((msg) => {
     msg = JSON.parse(msg);
     let child = document.createElement("div");
-    child.innerHTML = `${msg.username}: ${msg.msg}`;
+
+    if (msg.username == sessionStorage.getItem("username")) {
+      child.classList.add("myMsg");
+    } else {
+      child.classList.add("otherMsg");
+    }
+
+    let name = document.createElement("div");
+    name.innerHTML = msg.username;
+    name.classList.add("name");
+    child.appendChild(name);
+
+    let content = document.createElement("div");
+    content.classList.add("content");
+    content.innerHTML = msg.msg;
+    child.appendChild(content);
+
     area.appendChild(child);
   });
+  let last = document.getElementById("msgs").children;
+  last = last[last.length - 1];
+  last.scrollIntoView();
 }
 
 function sendMsg() {
   let input = document.getElementById("newMsg");
   input = input.value;
+  if (input == "") return;
   db.collection("chat")
     .doc(sessionStorage.getItem("chatCh"))
     .get()
