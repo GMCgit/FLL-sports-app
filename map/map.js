@@ -29,6 +29,10 @@ function goToBlocked() {
   window.location = "../Friends-Blocked/Friends-blocked.html";
 }
 
+function toChat() {
+  window.location = "../chat/chat.html";
+}
+
 function place_suggestion() {
   if (document.getElementById("suggest_adress").value !== "" && document.getElementById("suggest_name").value !== "" && document.getElementById("suggest_sports").value !== ""){
     db.collection("map_suggestions").add({

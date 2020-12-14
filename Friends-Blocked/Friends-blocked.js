@@ -110,3 +110,7 @@ function friends() {
 
   sessionStorage.setItem("friend", true);
 }
+
+function toChat() {
+  window.location = "../chat/chat.html";
+}

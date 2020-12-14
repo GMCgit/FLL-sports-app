@@ -31,6 +31,10 @@ if (otherObj.name != "") {
   profile.appendChild(otherUser_name);
 }
 
+function toChat() {
+  window.location = "../chat/chat.html";
+}
+
 db.collection("users")
   .doc(JSON.parse(sessionStorage.getItem("docId")).docId)
   .get()

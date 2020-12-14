@@ -196,3 +196,7 @@ function joinMatch() {
       });
     });
 }
+
+function toChat() {
+  window.location = "../chat/chat.html";
+}

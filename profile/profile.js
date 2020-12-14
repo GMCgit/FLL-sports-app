@@ -47,3 +47,7 @@ function goToBlocked() {
   sessionStorage.setItem("friend", false);
   window.location = "../Friends-Blocked/Friends-blocked.html";
 }
+
+function toChat() {
+  window.location = "../chat/chat.html";
+}

@@ -25,6 +25,10 @@ function toProfile() {
   window.location = "../../profile/profile.html";
 }
 
+function toChat() {
+  window.location = "../chat/chat.html";
+}
+
 function change_username() {
   if (document.getElementById("new_username").value == "") {
     alert("You have to submit a username");
