@@ -7,6 +7,10 @@ if (sessionStorage.getItem("admin") == "true") {
   document.getElementById("adminPage").classList.remove("invis");
 }
 
+function toChat() {
+  window.location = "../chat/chat.html";
+}
+
 function toProfile() {
   window.location = `../profile/profile.html`;
 }
@@ -23,7 +27,7 @@ function sport_suggest() {
   let name = document.getElementById("name").value;
   let max = document.getElementById("max").value;
   let min = document.getElementById("min").value;
-  if (name !== "" && max !== "" && min !== "") {
+  if (name !== "" && max !== "" && min !== "" && min > 0 && max >= min) {
     db.collection("sport_suggestions")
       .add({
         name: name,
@@ -34,6 +38,8 @@ function sport_suggest() {
         user_name: sessionStorage.getItem("name"),
       })
       .then(alert("succes"));
+  } else {
+    alert("No")
   }
 }
 

@@ -1,0 +1,96 @@
+body {
+  background-image: url("./images/main.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+#navbar {
+  border-radius: 5px;
+}
+
+#searchPeople {
+  margin-left: 5px;
+}
+
+#content {
+  width: 100vw;
+  height: 100vh;
+}
+
+.invis {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+
+#chatBg {
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  background-color: aliceblue;
+  opacity: 80%;
+  border-radius: 5px;
+  left: 10vw;
+  top: 10vh;
+}
+
+.new_group_input {
+  border-radius: 5px;
+}
+
+#chat {
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  border-radius: 5px;
+  left: 10vw;
+  top: 10vh;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.button {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  width: 20vw;
+  height: 5vh;
+}
+
+#chatSelector {
+  border-right: 1px solid black;
+  overflow-y: auto;
+}
+
+#chatTalk {
+  overflow-y: auto;
+}
+
+#sendMsg {
+  float: left;
+  position: absolute;
+  bottom: 0;
+  width: calc(80vw * 0.66);
+  height: calc(80vh * 0.05);
+  text-align: left;
+}
+
+#msgs {
+  width: calc(80vw*0.66);
+  height: calc(80vh * 0.95);
+  position: absolute;
+  text-align: left;
+  margin-left: 1vw
+}
+
+#sendMsg > input {
+  width: calc(80vw * 0.66 * 0.7);
+}
+
+#sendMsg > button {
+  width: calc(80vw * 0.66 * 0.28);
+}

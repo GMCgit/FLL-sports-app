@@ -10,41 +10,54 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="chat.css" />
   </head>
   <body>
     <div id="content">
-      <div id="mainBg"></div>
-      <div id="main">
-        <div id="suggestions">
-          <h3>suggest a sport</h3>
-          <input type="text" id="name" class="sport_suggestion" placeholder="sport name">
-          <input type="number" id="min" class="sport_suggestion" placeholder="min people">
-          <input type="number" id="max" class="sport_suggestion" placeholder="max people (leave blank if unlimited)">
-          <input type="text" id="comment" class="sport_suggestion" placeholder="comment (optional)">
-          <button class="btn btn-primary" onclick="sport_suggest()">Suggest</button>
+      <div id="chatBg"></div>
+      <div id="chat">
+        <div id="chatSelector">
+          <button
+            id="newChat"
+            class="btn btn-outline-success button"
+            onclick="newChatIn()"
+          >
+            New Chat
+          </button>
         </div>
-        <div id="inMatch" class="invis">
-          <div id="inMatchContent">
-            <div id="inMatchName"></div>
-            <div id="inMatchSport"></div>
-            <div id="inMatchStatus"></div>
-            <button
-              id="leaveMatch"
-              onclick="newInvite()"
-              class="btn btn-outline-primary"
-            >
-              New invite
+        <div id="chatTalk">
+          <div id="newChatT" class="invis">
+            <div>New group</div>
+            <input
+              class="new_group_input"
+              type="text"
+              placeholder="Usernames (username1, username2, ...)"
+              id="usernames"
+            />
+            <input
+              class="new_group_input"
+              type="text"
+              placeholder="Group name"
+              id="group_name"
+            />
+            <button onclick="createChat()" class="btn btn-outline-primary">
+              Create group
             </button>
-            <div id="inviteLink"></div>
-            <hr />
-            <button
-              id="leaveMatch"
-              onclick="leaveMatch()"
-              class="btn btn-outline-danger"
-            >
-              Leave match
+            <button onclick="stopCChat()" class="btn btn-outline-danger">
+              Cancle
             </button>
+          </div>
+          <div id="textingArea" class="invis">
+            <div id="msgs"></div>
+            <div id="sendMsg">
+              <input
+                type="text"
+                id="newMsg"
+                placeholder="New message"
+                class="new_group_input"
+              />
+              <button onclick="sendMsg()" class="btn btn-outline-success">Send msg</button>
+            </div>
           </div>
         </div>
       </div>
@@ -74,9 +87,6 @@
             </li>
             <li class="nav-item">
               <button class="nav-link btn" onclick="toMap()">Map</button>
-            </li>
-            <li class="nav-item">
-              <button class="nav-link btn" onclick="toChat()">Chat</button>
             </li>
             <li id="adminPage" class="nav-item invis">
               <button class="nav-link btn" onclick="toAdmin()">To Admin</button>
@@ -174,6 +184,6 @@
     <script src="../search/search.js"></script>
     <link rel="stylesheet" type="text/css" href="../search/search.css" />
 
-    <script src="./main.js" defer></script>
+    <script src="./chat.js" defer></script>
   </body>
 </html>
