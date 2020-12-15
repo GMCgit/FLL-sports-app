@@ -3,6 +3,24 @@ const username = document.getElementById("username");
 
 username.innerHTML = sessionStorage.getItem("username");
 
+let pref = JSON.parse(sessionStorage.getItem("pref"));
+
+if (pref.dark) {
+  darkMode(true);
+}
+
+function darkMode(toDark) {
+  if (toDark) {
+    document.getElementById("friendsBg").classList.add("dark");
+    document.getElementById("content").classList.add("darkTxt");
+    document.getElementById("friends_list").classList.add("fbbgDark");
+    document.getElementById("blocked_list").classList.add("fbbgDark");
+  } else {
+    document.getElementById("friendsBg").classList.remove("dark");
+    document.getElementById("content").classList.remove("darkTxt");
+  }
+}
+
 if (sessionStorage.getItem("admin") == "true") {
   document.getElementById("adminPage").classList.remove("invis");
 }
@@ -49,7 +67,11 @@ db.collection("users")
           let child = document.createElement("button");
           child.innerHTML = friendD.data().username;
           child.classList.add("btn");
-          child.classList.add("btn-outline-dark");
+          if (pref.dark) {
+            child.classList.add("btn-outline-primary");
+          } else {
+            child.classList.add("btn-outline-dark");
+          }
           child.classList.add("button-others");
           child.value = friendD.id;
           child.data = friendD.data().name;
@@ -69,7 +91,12 @@ db.collection("users")
           let child = document.createElement("button");
           child.innerHTML = friendD.data().username;
           child.classList.add("btn");
-          child.classList.add("btn-outline-dark");
+
+          if (pref.dark) {
+            child.classList.add("btn-outline-primary");
+          } else {
+            child.classList.add("btn-outline-dark");
+          }
           child.classList.add("button-others");
           child.value = friendD.id;
           child.data = friendD.data().name;
@@ -93,6 +120,13 @@ function blocked() {
   blockedO.button.classList.add("btn-active");
   blockedO.button.classList.remove("btn-unactive");
 
+  if (pref.dark) {
+    friendsO.button.classList.remove("btn-active-dark");
+    friendsO.button.classList.add("btn-unactive-dark");
+    blockedO.button.classList.add("btn-active-dark");
+    blockedO.button.classList.remove("btn-unactive-dark");
+  }
+
   friendsO.text.classList.add("invis");
   blockedO.text.classList.remove("invis");
 
@@ -104,6 +138,13 @@ function friends() {
   friendsO.button.classList.remove("btn-unactive");
   blockedO.button.classList.remove("btn-active");
   blockedO.button.classList.add("btn-unactive");
+
+  if (pref.dark) {
+    friendsO.button.classList.add("btn-active-dark");
+    friendsO.button.classList.remove("btn-unactive-dark");
+    blockedO.button.classList.remove("btn-active-dark");
+    blockedO.button.classList.add("btn-unactive-dark");
+  }
 
   friendsO.text.classList.remove("invis");
   blockedO.text.classList.add("invis");

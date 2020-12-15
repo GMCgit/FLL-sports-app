@@ -19,6 +19,7 @@ function LogIn() {
               sessionStorage.setItem("name", doc.data().name);
               sessionStorage.setItem("DocName", doc.id);
               sessionStorage.setItem("bio", doc.data().biography);
+              sessionStorage.setItem("pref", doc.data().pref);
               if (document.getElementById("Remeber").checked == true) {
                 localStorage.setItem("username", doc.data().username);
                 localStorage.setItem("password", doc.data().password);
@@ -82,6 +83,13 @@ if (
       lastLogin: new Date(),
     })
     .then(() => {
-      window.location = `../../mainPage/main.html`;
+      db.collection("users")
+        .doc(sessionStorage.getItem("DocName"))
+        .get((doc) => {
+          sessionStorage.setItem("pref", doc.data().pref);
+        })
+        .then(() => {
+          window.location = `../../mainPage/main.html`;
+        });
     });
 }

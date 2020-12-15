@@ -20,7 +20,7 @@ body {
   height: 100vh;
 }
 
-#profileBg {
+.profileBg {
   position: absolute;
   background-color: aliceblue;
   width: 60vw;

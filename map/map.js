@@ -6,6 +6,34 @@ function toMain() {
   window.location = `../mainPage/main.html`;
 }
 
+let pref = JSON.parse(sessionStorage.getItem("pref"));
+
+if (pref.dark) {
+  darkMode(true);
+}
+
+function darkMode(toDark) {
+  if (toDark) {
+    document.getElementById("mapBg").classList.add("dark");
+    document.getElementById("content").classList.add("darkTxt");
+  } else {
+    document.getElementById("mapBg").classList.remove("dark");
+    document.getElementById("content").classList.remove("darkTxt");
+  }
+
+  if (toDark) {
+    document.getElementById("navbar").classList.remove("navbar-light");
+    document.getElementById("navbar").classList.remove("bg-light");
+    document.getElementById("navbar").classList.add("navbar-dark");
+    document.getElementById("navbar").classList.add("bg-dark");
+  } else {
+    document.getElementById("navbar").classList.remove("navbar-dark");
+    document.getElementById("navbar").classList.remove("bg-dark");
+    document.getElementById("navbar").classList.add("navbar-light");
+    document.getElementById("navbar").classList.add("bg-light");
+  }
+}
+
 let db = firebase.firestore();
 const username = document.getElementById("username");
 
@@ -34,7 +62,11 @@ function toChat() {
 }
 
 function place_suggestion() {
-  if (document.getElementById("suggest_adress").value !== "" && document.getElementById("suggest_name").value !== "" && document.getElementById("suggest_sports").value !== ""){
+  if (
+    document.getElementById("suggest_adress").value !== "" &&
+    document.getElementById("suggest_name").value !== "" &&
+    document.getElementById("suggest_sports").value !== ""
+  ) {
     db.collection("map_suggestions").add({
       adress: document.getElementById("suggest_adress").value,
       name: document.getElementById("suggest_name").value,
@@ -42,9 +74,9 @@ function place_suggestion() {
       user_doc: sessionStorage.getItem("DocName"),
       user_name: sessionStorage.getItem("name"),
       comment: document.getElementById("suggest_comment").value,
-    })
-    alert("succes")
+    });
+    alert("succes");
   } else {
-    alert("you didn't fill all fields")
+    alert("you didn't fill all fields");
   }
 }

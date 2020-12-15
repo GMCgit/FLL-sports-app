@@ -7,6 +7,33 @@ if (sessionStorage.getItem("admin") == "true") {
   document.getElementById("adminPage").classList.remove("invis");
 }
 
+let pref = JSON.parse(sessionStorage.getItem("pref"));
+
+if (pref.dark) {
+  darkMode(true);
+}
+
+function darkMode(toDark) {
+  if (toDark) {
+    document.getElementById("mainBg").classList.add("dark");
+    document.getElementById("content").classList.add("darkTxt");
+  } else {
+    document.getElementById("mainBg").classList.remove("dark");
+    document.getElementById("content").classList.remove("darkTxt");
+  }
+  if (toDark) {
+    document.getElementById("navbar").classList.remove("navbar-light");
+    document.getElementById("navbar").classList.remove("bg-light");
+    document.getElementById("navbar").classList.add("navbar-dark");
+    document.getElementById("navbar").classList.add("bg-dark");
+  } else {
+    document.getElementById("navbar").classList.remove("navbar-dark");
+    document.getElementById("navbar").classList.remove("bg-dark");
+    document.getElementById("navbar").classList.add("navbar-light");
+    document.getElementById("navbar").classList.add("bg-light");
+  }
+}
+
 function toChat() {
   window.location = "../chat/chat.html";
 }
@@ -154,7 +181,7 @@ function leaveMatch() {
             .get()
             .then((q) => {
               q.forEach((ch) => {
-                let arr = ch.data().users
+                let arr = ch.data().users;
 
                 if (
                   ch.data().name == `${stuff.name}, ${stuff.difficulty}` &&

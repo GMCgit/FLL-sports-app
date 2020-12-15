@@ -7,6 +7,33 @@ if (sessionStorage.getItem("admin") == "true") {
   document.getElementById("adminPage").classList.remove("invis");
 }
 
+let pref = JSON.parse(sessionStorage.getItem("pref"));
+
+if (pref.dark) {
+  darkMode(true);
+}
+
+function darkMode(toDark) {
+  if (toDark) {
+    document.getElementById("chatBg").classList.add("dark");
+    document.getElementById("content").classList.add("darkTxt");
+  } else {
+    document.getElementById("chatBg").classList.remove("dark");
+    document.getElementById("content").classList.remove("darkTxt");
+  }
+  if (toDark) {
+    document.getElementById("navbar").classList.remove("navbar-light");
+    document.getElementById("navbar").classList.remove("bg-light");
+    document.getElementById("navbar").classList.add("navbar-dark");
+    document.getElementById("navbar").classList.add("bg-dark");
+  } else {
+    document.getElementById("navbar").classList.remove("navbar-dark");
+    document.getElementById("navbar").classList.remove("bg-dark");
+    document.getElementById("navbar").classList.add("navbar-light");
+    document.getElementById("navbar").classList.add("bg-light");
+  }
+}
+
 function toProfile() {
   window.location = `../profile/profile.html`;
 }
@@ -178,8 +205,14 @@ function newMsg(doc) {
 
     if (msg.username == sessionStorage.getItem("username")) {
       child.classList.add("myMsg");
+      if (pref.dark) {
+        child.classList.add("myMsgDark");
+      }
     } else {
       child.classList.add("otherMsg");
+      if (pref.dark) {
+        child.classList.add("otherMsgDark");
+      }
     }
 
     let name = document.createElement("div");
@@ -188,7 +221,7 @@ function newMsg(doc) {
     child.appendChild(name);
 
     let content = document.createElement("div");
-    content.classList.add("content");
+    content.classList.add("contentMsg");
     content.innerHTML = msg.msg;
     child.appendChild(content);
 

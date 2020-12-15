@@ -3,76 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App name</title>
+    <title>Document</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="main.css" />
-    <link rel="stylesheet" type="text/css" href="../darkMode.css" />
+    <link rel="stylesheet" type="text/css" href="settings.css" />
   </head>
   <body>
-    <div id="content" class="content">
-      <div id="mainBg" class="mainBg"></div>
-      <div id="main">
-        <div id="suggestions">
-          <h3>suggest a sport</h3>
-          <input
-            type="text"
-            id="name"
-            class="sport_suggestion"
-            placeholder="sport name"
-          />
-          <input
-            type="number"
-            id="min"
-            class="sport_suggestion"
-            placeholder="min people"
-          />
-          <input
-            type="number"
-            id="max"
-            class="sport_suggestion"
-            placeholder="max people (leave blank if unlimited)"
-          />
-          <input
-            type="text"
-            id="comment"
-            class="sport_suggestion"
-            placeholder="comment (optional)"
-          />
-          <button class="btn btn-primary" onclick="sport_suggest()">
-            Suggest
-          </button>
-        </div>
-        <div id="inMatch" class="invis">
-          <div id="inMatchContent">
-            <div id="inMatchName"></div>
-            <div id="inMatchSport"></div>
-            <div id="inMatchStatus"></div>
-            <button
-              id="leaveMatch"
-              onclick="newInvite()"
-              class="btn btn-outline-primary"
-            >
-              New invite
-            </button>
-            <div id="inviteLink"></div>
-            <div id="chat" class="invis">
-              <hr />
-              <button class="btn btn-outline-primary" onclick="toChat()">Go to Chat</button>
-            </div>
-            <hr />
-            <button
-              id="leaveMatch"
-              onclick="leaveMatch()"
-              class="btn btn-outline-danger"
-            >
-              Leave match
-            </button>
-          </div>
+    <div id="content" class="darkTxt">
+      <div id="settingsBg" class="settingsBg"></div>
+      <div id="settings" class="settings">
+        <div class="title">Settings</div>
+        <div class="setting">
+          <hr>
+          Dark Mode
+          <label class="switch">
+            <input id="darkCheck" type="checkbox" onchange="changed(this)" />
+            <span class="slider round"></span>
+          </label>
+          <hr>
         </div>
       </div>
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
@@ -201,6 +153,6 @@
     <script src="../search/search.js"></script>
     <link rel="stylesheet" type="text/css" href="../search/search.css" />
 
-    <script src="./main.js" defer></script>
+    <script src="./settings.js" defer></script>
   </body>
 </html>

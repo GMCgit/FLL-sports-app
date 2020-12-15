@@ -9,6 +9,36 @@ document.getElementById("Name").innerHTML = `Name: ${sessionStorage.getItem(
   "name"
 )}`;
 
+let pref = JSON.parse(sessionStorage.getItem("pref"));
+
+if (pref.dark) {
+  darkMode(true);
+} else {
+  darkMode(false);
+}
+
+function darkMode(toDark) {
+  if (toDark) {
+    document.getElementById("profileBg").classList.add("dark");
+    document.getElementById("content").classList.add("darkTxt");
+  } else {
+    document.getElementById("profileBg").classList.remove("dark");
+    document.getElementById("content").classList.remove("darkTxt");
+  }
+  
+  if (toDark) {
+    document.getElementById("navbar").classList.remove("navbar-light");
+    document.getElementById("navbar").classList.remove("bg-light");
+    document.getElementById("navbar").classList.add("navbar-dark");
+    document.getElementById("navbar").classList.add("bg-dark");
+  } else {
+    document.getElementById("navbar").classList.remove("navbar-dark");
+    document.getElementById("navbar").classList.remove("bg-dark");
+    document.getElementById("navbar").classList.add("navbar-light");
+    document.getElementById("navbar").classList.add("bg-light");
+  }
+}
+
 if (sessionStorage.getItem("bio") !== "undefined") {
   document.getElementById("bio").value = sessionStorage.getItem("bio");
 }
@@ -138,7 +168,10 @@ function fav_sports() {
 }
 
 function update_age() {
-  if (Number(document.getElementById("age").value) > 0 && Number(document.getElementById("age").value) % 1 == 0) {
+  if (
+    Number(document.getElementById("age").value) > 0 &&
+    Number(document.getElementById("age").value) % 1 == 0
+  ) {
     db.collection("users")
       .doc(sessionStorage.getItem("DocName"))
       .update({

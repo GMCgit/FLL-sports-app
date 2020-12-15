@@ -14,28 +14,28 @@ body {
   margin-left: 5px;
 }
 
-#content {
+.content {
   width: 100vw;
   height: 100vh;
 }
 
-#profileBg {
+.profileBg {
   position: absolute;
   background-color: aliceblue;
-  width: 40vmin;
-  height: 60vmin;
+  width: 40vw;
+  height: 60vh;
   opacity: 70%;
-  margin-left: calc((100vw - 40vmin)/2);
-  margin-top: calc((100vh - 60vmin)/2);
+  margin-left: calc((100vw - 40vw)/2);
+  margin-top: calc((100vh - 60vh)/2);
   border-radius: 10px;
 }
 
 #profile {
   position: absolute;
-  width: 40vmin;
-  height: 60vmin;
-  margin-left: calc((100vw - 40vmin)/2);
-  margin-top: calc((100vh - 60vmin)/2);
+  width: 40vw;
+  height: 60vh;
+  margin-left: calc((100vw - 40vw)/2);
+  margin-top: calc((100vh - 60vh)/2);
   border-radius: 10px;
 }
 

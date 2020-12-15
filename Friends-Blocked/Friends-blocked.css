@@ -14,7 +14,7 @@ body {
   margin-left: 5px;
 }
 
-#content {
+.content {
   width: 100vw;
   height: 100vh;
 }
@@ -36,7 +36,7 @@ body {
   --offset: 8vw;
 }
 
-#friendsBg {
+.friendsBg {
   position: absolute;
   width: var(--width);
   height: var(--height);
@@ -73,6 +73,14 @@ body {
   background-color: rgb(202, 210, 216);
 }
 
+.btn-active-dark {
+  background-color: #343a40;
+}
+
+.btn-unactive-dark {
+  background-color: #2a2e33;
+}
+
 .fbbg {
   position: absolute;
   top: calc((var(--height) - var(--height) / 1.1) * 0.8);
@@ -84,6 +92,9 @@ body {
   border-radius: 10px;
   padding-bottom: calc(var(--height) - var(--height) / 1.1);
   overflow-y: scroll;
+}
+.fbbgDark {
+  background-color: #343a40;
 }
 
 .button-others {

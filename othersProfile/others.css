@@ -14,12 +14,12 @@ body {
   margin-left: 5px;
 }
 
-#content {
+.content {
   width: 100vw;
   height: 100vh;
 }
 
-#profileBg {
+.profileBg {
   position: absolute;
   border-radius: 5px;
   width: 60vw;
