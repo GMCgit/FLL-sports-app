@@ -45,7 +45,7 @@ body {
   top: 20vh;
   text-align: center;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
 }
 
 #inMatchName {

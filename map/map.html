@@ -276,6 +276,65 @@
           });
       }
 
+      function check(arrI, arrO) {
+        let isTrue = true;
+
+        arrI.forEach((elm) => {
+          if (!arrO.includes(elm)) {
+            isTrue = false;
+          }
+        });
+
+        return isTrue;
+      }
+
+      function createChat(stuff) {
+        let users = [];
+        let exists = false;
+        db.collection("fields")
+          .doc(stuff.field)
+          .get()
+          .then((field) => {
+            if (stuff.difficulty == "easy") {
+              users = field.data().easy;
+            } else if (stuff.difficulty == "medium") {
+              users = field.data().medium;
+            } else if (stuff.difficulty == "hard") {
+              users = field.data().hard;
+            }
+
+            db.collection("chat")
+              .get()
+              .then((q) => {
+                q.forEach((ch) => {
+                  if (
+                    ch.data().name == `${stuff.name}, ${stuff.difficulty}` &&
+                    check(ch.data().users, users)
+                  ) {
+                    exists = true;
+                    if (
+                      JSON.stringify(users) != JSON.stringify(ch.data().users)
+                    ) {
+                      db.collection("chat").doc(ch.id).update({
+                        users: users,
+                      });
+                    }
+                  }
+                });
+              })
+              .then(() => {
+                if (exists == false) {
+                  db.collection("chat").add({
+                    users: users,
+                    name: `${stuff.name}, ${stuff.difficulty}`,
+                    msgs: [],
+                  });
+                }
+                document.getElementById("chat").classList.remove("invis");
+              });
+          });
+      }
+
       function joinMatch() {
         let difficulty = document.getElementById("difficulty");
         let name = document.getElementById("activeName");
@@ -425,6 +484,9 @@
                           hard: newArr,
                         });
                       }
+
+                      createChat(joiningObj);
+
                       return alert("Success!");
                     }
                   });

@@ -18,11 +18,33 @@
       <div id="main">
         <div id="suggestions">
           <h3>suggest a sport</h3>
-          <input type="text" id="name" class="sport_suggestion" placeholder="sport name">
-          <input type="number" id="min" class="sport_suggestion" placeholder="min people">
-          <input type="number" id="max" class="sport_suggestion" placeholder="max people (leave blank if unlimited)">
-          <input type="text" id="comment" class="sport_suggestion" placeholder="comment (optional)">
-          <button class="btn btn-primary" onclick="sport_suggest()">Suggest</button>
+          <input
+            type="text"
+            id="name"
+            class="sport_suggestion"
+            placeholder="sport name"
+          />
+          <input
+            type="number"
+            id="min"
+            class="sport_suggestion"
+            placeholder="min people"
+          />
+          <input
+            type="number"
+            id="max"
+            class="sport_suggestion"
+            placeholder="max people (leave blank if unlimited)"
+          />
+          <input
+            type="text"
+            id="comment"
+            class="sport_suggestion"
+            placeholder="comment (optional)"
+          />
+          <button class="btn btn-primary" onclick="sport_suggest()">
+            Suggest
+          </button>
         </div>
         <div id="inMatch" class="invis">
           <div id="inMatchContent">
@@ -37,6 +59,10 @@
               New invite
             </button>
             <div id="inviteLink"></div>
+            <div id="chat" class="invis">
+              <hr />
+              <button class="btn btn-outline-primary" onclick="toChat()">Go to Chat</button>
+            </div>
             <hr />
             <button
               id="leaveMatch"

@@ -27,7 +27,16 @@ function sport_suggest() {
   let name = document.getElementById("name").value;
   let max = document.getElementById("max").value;
   let min = document.getElementById("min").value;
-  if (name !== "" && max !== "" && min !== "" && min > 0 && max >= min && min % 1 == 0 && max % 1 == 0 && min < 50) {
+  if (
+    name !== "" &&
+    max !== "" &&
+    min !== "" &&
+    min > 0 &&
+    max >= min &&
+    min % 1 == 0 &&
+    max % 1 == 0 &&
+    min < 50
+  ) {
     db.collection("sport_suggestions")
       .add({
         name: name,
@@ -39,7 +48,7 @@ function sport_suggest() {
       })
       .then(alert("succes"));
   } else {
-    alert("No")
+    alert("No");
   }
 }
 
@@ -131,6 +140,33 @@ function leaveMatch() {
               hardB: arr,
             });
           }
+          let users;
+
+          if (stuff.difficulty == "easy") {
+            users = f.data().easy;
+          } else if (stuff.difficulty == "medium") {
+            users = f.data().medium;
+          } else if (stuff.difficulty == "hard") {
+            users = f.data().hard;
+          }
+
+          db.collection("chat")
+            .get()
+            .then((q) => {
+              q.forEach((ch) => {
+                let arr = ch.data().users
+
+                if (
+                  ch.data().name == `${stuff.name}, ${stuff.difficulty}` &&
+                  check(users, arr)
+                ) {
+                  console.log(users);
+                  db.collection("chat").doc(ch.id).update({
+                    users: users,
+                  });
+                }
+              });
+            });
         })
         .then(() => {
           sessionStorage.removeItem("fieldData");
@@ -201,8 +237,8 @@ function sprotStatus() {
     .get()
     .then((qS) => {
       qS.forEach((m) => {
-        if (m.data().name == stuff.sprort) {
-          Max = m.data().max;
+        if (m.data().name == stuff.sport) {
+          Max = m.data().min;
         }
       });
     })
@@ -215,7 +251,115 @@ function sprotStatus() {
             document.getElementById("inMatchStatus").innerHTML = `${
               doc.data().easy.length
             } / ${Max} players ready`;
+            if (doc.data().easy.length >= Max) {
+              createChat(stuff);
+            } else {
+              delChat(stuff);
+            }
+          } else if (stuff.difficulty == "medium") {
+            document.getElementById("inMatchStatus").innerHTML = `${
+              doc.data().medium.length
+            } / ${Max} players ready`;
+            if (doc.data().medium.length >= Max) {
+              createChat(stuff);
+            } else {
+              delChat(stuff);
+            }
+          } else if (stuff.difficulty == "hard") {
+            document.getElementById("inMatchStatus").innerHTML = `${
+              doc.data().hard.length
+            } / ${Max} players ready`;
+            if (doc.data().hard.length >= Max) {
+              createChat(stuff);
+            } else {
+              delChat(stuff);
+            }
           }
+        });
+    });
+}
+
+function delChat(stuff) {
+  let users = [];
+  db.collection("fields")
+    .doc(stuff.field)
+    .get()
+    .then((field) => {
+      if (stuff.difficulty == "easy") {
+        users = field.data().easy;
+      } else if (stuff.difficulty == "medium") {
+        users = field.data().medium;
+      } else if (stuff.difficulty == "hard") {
+        users = field.data().hard;
+      }
+      db.collection("chat")
+        .get()
+        .then((q) => {
+          q.forEach((ch) => {
+            if (
+              ch.data().name == `${stuff.name}, ${stuff.difficulty}` &&
+              check(ch.data().users, users)
+            ) {
+              db.collection("chat").doc(ch.id).delete();
+            }
+          });
+        });
+    });
+}
+
+function check(arrI, arrO) {
+  let isTrue = true;
+
+  arrI.forEach((elm) => {
+    if (!arrO.includes(elm)) {
+      isTrue = false;
+    }
+  });
+
+  return isTrue;
+}
+
+function createChat(stuff) {
+  let users = [];
+  let exists = false;
+  db.collection("fields")
+    .doc(stuff.field)
+    .get()
+    .then((field) => {
+      if (stuff.difficulty == "easy") {
+        users = field.data().easy;
+      } else if (stuff.difficulty == "medium") {
+        users = field.data().medium;
+      } else if (stuff.difficulty == "hard") {
+        users = field.data().hard;
+      }
+
+      db.collection("chat")
+        .get()
+        .then((q) => {
+          q.forEach((ch) => {
+            if (
+              ch.data().name == `${stuff.name}, ${stuff.difficulty}` &&
+              check(ch.data().users, users)
+            ) {
+              exists = true;
+              if (JSON.stringify(users) != JSON.stringify(ch.data().users)) {
+                db.collection("chat").doc(ch.id).update({
+                  users: users,
+                });
+              }
+            }
+          });
+        })
+        .then(() => {
+          if (exists == false) {
+            db.collection("chat").add({
+              users: users,
+              name: `${stuff.name}, ${stuff.difficulty}`,
+              msgs: [],
+            });
+          }
+          document.getElementById("chat").classList.remove("invis");
         });
     });
 }
