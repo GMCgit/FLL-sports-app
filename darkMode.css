@@ -1,7 +1,11 @@
 .dark {
-  background-color: #343a40;
+  background-color: #343a40 !important;
+}
+
+.dark-bg {
+  background-color: #343a40 !important;
 }
 
 .darkTxt {
-  color: #fff;
+  color: #fff !important;
 }

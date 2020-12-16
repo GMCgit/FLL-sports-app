@@ -32,6 +32,10 @@ function darkMode(toDark) {
     document.getElementById("navbar").classList.add("navbar-light");
     document.getElementById("navbar").classList.add("bg-light");
   }
+  if (toDark) {
+    document.getElementsByClassName("dropdown-menu")[0].classList.add("dark-bg")
+    document.getElementsByClassName("dropdown-menu")[0].classList.add("darkTxt")
+  }
 }
 
 if (sessionStorage.getItem("admin") == "true") {
