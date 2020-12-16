@@ -15,9 +15,22 @@ function darkMode(toDark) {
     document.getElementById("content").classList.add("darkTxt");
     document.getElementById("friends_list").classList.add("fbbgDark");
     document.getElementById("blocked_list").classList.add("fbbgDark");
+    document.getElementById("friend_button").classList.add("darkTxt")
+    document.getElementById("blocked_button").classList.add("darkTxt")
   } else {
     document.getElementById("friendsBg").classList.remove("dark");
     document.getElementById("content").classList.remove("darkTxt");
+  }
+  if (toDark) {
+    document.getElementById("navbar").classList.remove("navbar-light");
+    document.getElementById("navbar").classList.remove("bg-light");
+    document.getElementById("navbar").classList.add("navbar-dark");
+    document.getElementById("navbar").classList.add("bg-dark");
+  } else {
+    document.getElementById("navbar").classList.remove("navbar-dark");
+    document.getElementById("navbar").classList.remove("bg-dark");
+    document.getElementById("navbar").classList.add("navbar-light");
+    document.getElementById("navbar").classList.add("bg-light");
   }
 }
 
