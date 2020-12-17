@@ -33,8 +33,12 @@ function darkMode(toDark) {
     document.getElementById("navbar").classList.add("bg-light");
   }
   if (toDark) {
-    document.getElementsByClassName("dropdown-menu")[0].classList.add("dark-bg")
-    document.getElementsByClassName("dropdown-menu")[0].classList.add("darkTxt")
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.add("dark-bg");
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.add("darkTxt");
   }
 }
 
@@ -98,7 +102,11 @@ function getChs() {
         let child = document.createElement("button");
         child.innerHTML = ch.name;
         child.classList.add("btn");
-        child.classList.add("btn-outline-dark");
+        if (!pref.dark) {
+          child.classList.add("btn-outline-dark");
+        } else {
+          child.classList.add("btn-outline-primary")
+        }
         child.classList.add("button");
         child.classList.add("channel");
         child.data = JSON.stringify(ch);
