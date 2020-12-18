@@ -39,14 +39,8 @@ function goToBlocked() {
   window.location = "../Friends-Blocked/Friends-blocked.html";
 }
 
-function goToFriends() {
-  sessionStorage.setItem("friend", true);
-  window.location = "../Friends-Blocked/Friends-blocked.html";
-}
-
-function goToBlocked() {
-  sessionStorage.setItem("friend", false);
-  window.location = "../Friends-Blocked/Friends-blocked.html";
+function toChat() {
+  window.location = "../chat/chat.html"
 }
 
 function changed(el) {
@@ -58,6 +52,7 @@ function changed(el) {
         pref: JSON.stringify(pref),
       });
     darkMode(true);
+    sessionStorage.setItem("pref", JSON.stringify(pref))
   } else {
     pref.dark = false;
     db.collection("users")
@@ -66,6 +61,7 @@ function changed(el) {
         pref: JSON.stringify(pref),
       });
     darkMode(false)
+    sessionStorage.setItem("pref", JSON.stringify(pref))
   }
 }
 
