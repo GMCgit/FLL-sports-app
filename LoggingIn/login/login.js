@@ -85,7 +85,7 @@ if (
     .then(() => {
       db.collection("users")
         .doc(sessionStorage.getItem("DocName"))
-        .get((doc) => {
+        .get().then((doc) => {
           sessionStorage.setItem("pref", doc.data().pref);
         })
         .then(() => {
