@@ -48,20 +48,96 @@
             <button onclick="stopCChat()" class="btn btn-outline-danger">
               Cancle
             </button>
+            <hr />
+            <input
+              class="new_group_input"
+              id="searchBarNewChat"
+              placeholder="search"
+              onkeypress="searchUsers()"
+            />
+            <button class="btn btn-outline-success" onclick="searchUsers()">
+              Search
+            </button>
+            <div id="searchResNewChat"></div>
           </div>
           <div id="textingArea" class="invis">
-            <div id="msgs"></div>
+            <div id="msgsWrapper">
+              <div id="msgs"></div>
+              <div id="msgsBanner"></div>
+            </div>
             <div id="sendMsg">
               <input
                 type="text"
                 id="newMsg"
                 placeholder="New message"
                 class="new_group_input"
+                onkeypress="sendMsgEnter(event)"
               />
               <button onclick="sendMsg()" class="btn btn-outline-success">
                 Send
               </button>
             </div>
+          </div>
+          <div id="chatSettings" class="invis">
+            <h3>Settings</h3>
+            <hr />
+            <div id="usersInChat">
+              <h5>Users</h5>
+              <div id="usersInChatDisplay"></div>
+            </div>
+            <hr />
+            <h5>Change group name</h5>
+            <input
+              class="input-field"
+              type="text"
+              placeholder="Name"
+              id="changeNameInput"
+            />
+            <button
+              class="btn btn-outline-success"
+              id="changeName"
+              onclick="changeName()"
+            >
+              Change group name
+            </button>
+            <hr />
+            <h5>Add to group</h5>
+            <input
+              class="input-field"
+              type="text"
+              placeholder="Username"
+              id="addToGroupInput"
+            />
+            <button
+              class="btn btn-outline-success"
+              id="addToGroup"
+              onclick="addToGroup()"
+            >
+              Add to group
+            </button>
+            <hr />
+            <h5>Kick from group</h5>
+            <input
+              class="input-field"
+              type="text"
+              placeholder="Username"
+              id="kickFromGroupInput"
+            />
+            <button
+              class="btn btn-outline-warning"
+              id="kickFromGroup"
+              onclick="kickFromGroup()"
+            >
+              Kick from group
+            </button>
+            <hr />
+            <button class="btn btn-outline-danger" onclick="delGroup()">
+              Delete Group
+            </button>
+            <hr />
+            <button class="btn btn-outline-danger" onclick="exitSettings()">
+              Exit
+            </button>
           </div>
         </div>
       </div>
@@ -126,7 +202,7 @@
                       placeholder="Search"
                       aria-label="Search"
                       id="userEntered"
-                      onchange="searchPeople()"
+                      onkeypress="searchPeople()"
                     />
                     <button
                       class="btn btn-outline-success my-2 my-sm-0"

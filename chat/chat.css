@@ -78,9 +78,32 @@ body {
   height: calc(80vh * 0.05);
 }
 
-#msgs {
+#msgsWrapper {
   width: calc(80vw * 0.66);
   height: calc(80vh * 0.95);
+  position: absolute;
+  text-align: left;
+  overflow-y: hidden;
+  margin-left: 1vw;
+  display: block;
+}
+
+#msgsBanner {
+  position: absolute;
+  width: calc(80vw * 0.64 - 1vw);
+  height: 11vh;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#topDiv {
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+#msgs {
+  width: calc(80vw * 0.64);
+  height: calc(80vh * 0.9);
   position: absolute;
   text-align: left;
   overflow-y: auto;
@@ -138,4 +161,39 @@ body {
 
 .myMsgDark {
   background-color: #2a2e33;
+}
+
+#chatSettings {
+  opacity: 100%;
+  position: absolute;
+  width: 40vw;
+  height: 50vh;
+  border-radius: 5px;
+  top: 15vh;
+  left: calc(80vw * 0.33 + 80vw * 0.66/8);
+  border: 2px solid black;
+  overflow-y: auto;
+}
+
+#usersInChatDisplay {
+  overflow-y: auto;
+  min-height: auto;
+  max-height: 20vh;
+}
+
+#usersInChatDisplay > button {
+  width: 30vw;
+  margin-bottom: 1vh;
+}
+
+.chatBgLight {
+  background-color: aliceblue;
+}
+
+.chatBgDark {
+  background-color: #383d44;
+}
+
+.input-field {
+  width: 30vw;
 }
