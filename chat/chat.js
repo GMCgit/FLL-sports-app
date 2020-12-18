@@ -365,6 +365,32 @@ function checkForLink(str) {
     }
   }
 
+  link = "";
+  last = -1;
+  first = str.indexOf("invite::");
+  if (str.includes("invite::")) {
+    for (let i = 0; i < str.length; i++) {
+      if (i > str.indexOf("invite::")) {
+        if (str[i] == " ") {
+          last = i;
+        }
+      }
+      if (i == str.length - 1) {
+        last = str.length - 1;
+      }
+      if (last != -1) {
+        i = str.length;
+      }
+    }
+    link = str.substring(first, last + 1);
+    let linkId = str.substring(8, link.length);
+
+    str = str.replace(
+      link,
+      `<a href="https://gmcgit.github.io/FLL-sports-app/invite/invite.html?${linkId}" target="blank">invite</a>`
+    );
+  }
+
   return str;
 }
 
