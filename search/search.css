@@ -13,6 +13,18 @@
   margin-bottom: 10px;
 }
 
+.SearchResultDark {
+  border: 1px solid white;
+  color: white;
+  border-radius: 5px;
+  height: 5vh;
+  text-align: center;
+  width: var(--elm-width);
+  margin-left: calc((100vw - var(--elm-width)) / 2);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .invis {
   visibility: hidden;
 }

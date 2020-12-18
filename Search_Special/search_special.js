@@ -9,7 +9,7 @@ function searchPeople() {
     .then((querySearch) => {
       querySearch.forEach((doc) => {
         let Username = doc.data().username;
-        if (Username.includes(searchTerm.value)) {
+        if (Username.toLowerCase().includes(searchTerm.value.toLowerCase())) {
           user.push({
             username: Username,
             docId: doc.id,
@@ -30,8 +30,13 @@ function searchPeople() {
         let child = document.createElement("button");
         child.innerHTML = user[i].username;
         child.classList.add("btn");
-        child.classList.add("btn-outline-dark");
-        child.classList.add("SearchResult");
+        if (!JSON.parse(sessionStorage.getItem("pref")).dark) {
+          child.classList.add("btn-outline-dark");
+          child.classList.add("SearchResult");
+        } else {
+          child.classList.add("btn-outline-primary");
+          child.classList.add("SearchResultDark");
+        }
         child.classList.add("btn-lg");
         child.value = user[i].docId;
         child.data = user[i].name;
