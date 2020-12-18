@@ -72,6 +72,7 @@ let selector = document.getElementById("chatSelector");
 let talk = document.getElementById("chatTalk");
 let chs = [];
 let loading = 0;
+let audioNotif = new Audio("./soundNotif.wav");
 
 document.onload = getChs();
 
@@ -92,7 +93,7 @@ function getChs() {
           db.collection("chat")
             .doc(ch.id)
             .onSnapshot((doc) => {
-              newMsg(doc);
+              newMsg(doc, true);
             });
         }
       });
@@ -135,7 +136,7 @@ function selectChat(el) {
     .doc(sessionStorage.getItem("chatCh"))
     .get()
     .then((doc) => {
-      newMsg(doc);
+      newMsg(doc, false);
     });
 }
 
@@ -196,7 +197,7 @@ function createChat() {
   }
 }
 
-function newMsg(doc) {
+function newMsg(doc, playSound) {
   if (loading < chs.length) {
     loading++;
     return;
@@ -267,6 +268,16 @@ function newMsg(doc) {
     let last = document.getElementById("msgs").children;
     last = last[last.length - 1];
     last.scrollIntoView();
+    if (playSound == true) {
+      if (
+        JSON.parse(msgs[msgs.length - 1]).user !==
+        sessionStorage.getItem("DocName")
+      ) {
+        audioNotif.pause();
+        audioNotif.currentTime = 0;
+        audioNotif.play();
+      }
+    }
   } else {
     let docName;
     chs.forEach((ch) => {
