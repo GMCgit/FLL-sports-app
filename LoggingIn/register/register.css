@@ -3,7 +3,8 @@ body {
   background-repeat: no-repeat;
   background-size: 100vmax;
   background-position: center;
-  overflow: hidden;
+    overflow: hidden;
+  overflow-y: auto;
 }
 
 .content {
