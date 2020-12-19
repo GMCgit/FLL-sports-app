@@ -231,14 +231,10 @@ function newMsg(doc, playSound) {
     document.getElementById("msgsBanner").innerHTML = "";
     document.getElementById("msgsBanner").appendChild(topDiv);
 
-    let topDivBF = document.createElement("div");
-    topDivBF.setAttribute("style", "height: 12vh");
-    area.appendChild(topDivBF);
-
     msgs.forEach((msg) => {
       msg = JSON.parse(msg);
       let child = document.createElement("div");
-
+      child.classList.add("msgClassSpecific");
       if (msg.username == sessionStorage.getItem("username")) {
         child.classList.add("myMsg");
         if (pref.dark) {
@@ -387,7 +383,7 @@ function checkForLink(str) {
 
     str = str.replace(
       link,
-      `<a href="https://gmcgit.github.io/FLL-sports-app/invite/invite.html?${linkId}" target="blank">invite</a>`
+      `<a href="../invite/invite.html?link=${linkId}" target="blank">invite</a>`
     );
   }
 
@@ -604,4 +600,43 @@ function changeName() {
     input.value = "";
     return alert("Invalid name");
   }
+}
+
+function searchMsgs() {
+  let input = document.getElementById("searchMsgsInput");
+  let area = document.getElementById("msgs");
+  let msgs = document.querySelectorAll(".msgClassSpecific");
+  document.getElementById("msgsFound").innerHTML = "";
+  msgs.forEach((msg) => {
+    let children = msg.children;
+    let searchChild = document.createElement("button");
+    let msgFound = false;
+
+    let content, name;
+
+    for (let i = 0; i < children.length; i++) {
+      if (children[i].className == "contentMsg") {
+        if (
+          children[i].innerHTML
+            .toLowerCase()
+            .includes(input.value.toLowerCase())
+        ) {
+          msgFound = true;
+          content = children[i];
+        }
+      } else if (children[i].className == "name") {
+        name = children[i];
+      }
+    }
+
+    if (msgFound == true) {
+      searchChild.innerHTML = `${content.innerHTML}, from: ${name.innerHTML}`;
+      searchChild.className = "btn btn-outline-info";
+      searchChild.onclick = function (e) {
+        name.scrollIntoView();
+        exitSettings();
+      };
+      document.getElementById("msgsFound").appendChild(searchChild);
+    }
+  });
 }

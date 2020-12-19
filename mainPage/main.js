@@ -2,6 +2,19 @@ let db = firebase.firestore();
 const username = document.getElementById("username");
 
 username.innerHTML = sessionStorage.getItem("username");
+let hasInvite = false;
+db.collection("invites")
+  .get()
+  .then((qC) => {
+    qC.forEach((inviteC) => {
+      if (inviteC.data().owner == sessionStorage.getItem("DocName")) {
+        document.getElementById(
+          "inviteLink"
+        ).innerHTML = `<a target="blank" href="../invite/invite.html?link=${inviteC.id}">invite</a><br> invite::${inviteC.id}`;
+        hasInvite = true;
+      }
+    });
+  });
 
 if (sessionStorage.getItem("admin") == "true") {
   document.getElementById("adminPage").classList.remove("invis");
@@ -33,8 +46,12 @@ function darkMode(toDark) {
     document.getElementById("navbar").classList.add("bg-light");
   }
   if (toDark) {
-    document.getElementsByClassName("dropdown-menu")[0].classList.add("dark-bg")
-    document.getElementsByClassName("dropdown-menu")[0].classList.add("darkTxt")
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.add("dark-bg");
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.add("darkTxt");
   }
 }
 
@@ -84,24 +101,29 @@ function sport_suggest() {
 }
 
 function newInvite() {
-  db.collection("invites")
-    .add({
-      fieldData: sessionStorage.getItem("fieldData"),
-      owner: sessionStorage.getItem("DocName"),
-    })
-    .then(() => {
-      db.collection("invites")
-        .get()
-        .then((q) => {
-          q.forEach((invite) => {
-            if (invite.data().owner == sessionStorage.getItem("DocName")) {
-              document.getElementById(
-                "inviteLink"
-              ).innerHTML = `https://gmcgit.github.io/FLL-sports-app/invite/invite.html?link=${invite.id}`;
-            }
+  if (hasInvite == false) {
+    db.collection("invites")
+      .add({
+        fieldData: sessionStorage.getItem("fieldData"),
+        owner: sessionStorage.getItem("DocName"),
+      })
+      .then(() => {
+        db.collection("invites")
+          .get()
+          .then((q) => {
+            q.forEach((invite) => {
+              if (invite.data().owner == sessionStorage.getItem("DocName")) {
+                document.getElementById(
+                  "inviteLink"
+                ).innerHTML = `<a target="blank" href="../invite/invite.html?link=${invite.id}">invite</a><br> invite::${invite.id}`;
+                hasInvite = true;
+              }
+            });
           });
-        });
-    });
+      });
+  } else {
+    alert("Invite already there");
+  }
 }
 
 function leaveMatch() {

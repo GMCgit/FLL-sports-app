@@ -46,6 +46,8 @@ body {
   text-align: center;
   display: grid;
   grid-template-rows: 1fr 2fr;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #inMatchName {

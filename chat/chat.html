@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" type="text/css" href="chat.css" />
     <link rel="stylesheet" type="text/css" href="../darkMode.css" />
-    <link rel="shortcut icon" href="#">
+    <link rel="shortcut icon" href="#" />
   </head>
   <body>
     <div id="content" class="content">
@@ -63,8 +63,8 @@
           </div>
           <div id="textingArea" class="invis">
             <div id="msgsWrapper">
-              <div id="msgs"></div>
               <div id="msgsBanner"></div>
+              <div id="msgs"></div>
             </div>
             <div id="sendMsg">
               <input
@@ -101,6 +101,16 @@
             >
               Change group name
             </button>
+            <hr />
+            <h5>Search messages</h5>
+            <input
+              id="searchMsgsInput"
+              type="text"
+              placeholder="Search"
+              class="input-field"
+              onkeypress="searchMsgs()"
+            />
+            <div id="msgsFound"></div>
             <hr />
             <h5>Add to group</h5>
             <input

@@ -15,10 +15,10 @@ if (pref.dark) {
 
 function darkMode(toDark) {
   if (toDark) {
-    document.getElementById("adminBG").classList.add("dark");
+    document.getElementById("inviteBg").classList.add("dark");
     document.getElementById("content").classList.add("darkTxt");
   } else {
-    document.getElementById("adminBG").classList.remove("dark");
+    document.getElementById("inviteBg").classList.remove("dark");
     document.getElementById("content").classList.remove("darkTxt");
   }
 

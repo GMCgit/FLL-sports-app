@@ -85,11 +85,11 @@ body {
   text-align: left;
   overflow-y: hidden;
   margin-left: 1vw;
-  display: block;
+  display: grid;
+  grid-template-rows: 1fr 5fr
 }
 
 #msgsBanner {
-  position: absolute;
   width: calc(80vw * 0.64 - 1vw);
   height: 11vh;
   border-radius: 5px;
@@ -103,8 +103,6 @@ body {
 
 #msgs {
   width: calc(80vw * 0.64);
-  height: calc(80vh * 0.9);
-  position: absolute;
   text-align: left;
   overflow-y: auto;
   margin-left: 1vw;
@@ -196,4 +194,10 @@ body {
 
 .input-field {
   width: 30vw;
+}
+
+#msgsFound {
+  min-height: auto;
+  max-height: 20vh;
+  overflow-y: auto;
 }
