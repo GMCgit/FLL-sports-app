@@ -14,19 +14,19 @@ body {
   margin-left: 5px;
 }
 
-#content {
+.content {
   width: 100vw;
   height: 100vh;
 }
 
-#adminBG {
+.adminBG {
   background-color: aliceblue;
   position: absolute;
   opacity: 70%;
   width: 70vw;
-  height: 60vh;
+  height: 80vh;
   left: 15vw;
-  top: 20vh;
+  top: 10vh;
   border-radius: 5px;
 }
 
@@ -34,13 +34,13 @@ body {
   position: absolute;
   opacity: 100%;
   width: 70vw;
-  height: 60vh;
+  height: 80vh;
   left: 15vw;
-  top: 20vh;
+  top: 10vh;
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   text-align: center;
 }
 

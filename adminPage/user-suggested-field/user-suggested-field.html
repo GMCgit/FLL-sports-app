@@ -3,111 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin page</title>
+    <title>Document</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="admin.css" />
-    <link rel="stylesheet" type="text/css" href="../darkMode.css" />
+    <link rel="stylesheet" type="text/css" href="user-suggested-field.css">
   </head>
-  <body style="overflow-y: auto;">
+  <body>
     <div id="content" class="content">
-      <div id="adminBG" class="adminBG"></div>
-      <div id="admin">
-        <div class="form-group" id="newField">
-          <h4>New field</h4>
-          <input
-            type="text"
-            class="form-control"
-            name="lat"
-            id="lat"
-            aria-describedby="helpId"
-            placeholder="Latitude"
-          />
-          <input
-            type="text"
-            class="form-control"
-            name=""
-            id="lng"
-            aria-describedby="helpId"
-            placeholder="Longitude"
-          />
-          <input
-            type="text"
-            class="form-control"
-            name=""
-            id="name"
-            aria-describedby="helpId"
-            placeholder="Name"
-          />
-          <input
-            type="text"
-            class="form-control"
-            name=""
-            id="sport"
-            aria-describedby="helpId"
-            placeholder="Sport"
-          />
-          <hr />
-          <button onclick="newField()" class="btn btn-outline-primary">
-            New Field
-          </button>
+        <div id="suggestion" class="suggestion">
+        <h3 id="title">suggestion</h3>
+        <button id="suggestao"></button>
+        <p>name: </p><input type="text" id="name">
+        <p>sports: </p><input type="text" id="sports">
+        <p>adress</p><input type="text" id="adress">
+        <p>comment</p><input type="text" id="comment" placeholder="none">
+        <hr>
+        <input type="text" placeholder ="latitude" id="lat">
+        <input type="text" placeholder="longitude" id="lng">
+        <br>
+        <button class="btn btn-info" onclick="add_field()">add field</button>
+        <button class="btn btn-danger" onclick="delete_suggestion()">delete suggestion</button>
         </div>
-        <div class="form-group" id="Users">
-          <h4>User data</h4>
-          <div id="userCount"></div>
-        </div>
-        <div class="form-group" id="asignAdmin">
-          <h4>Assign an admin</h4>
-          <input
-            type="text"
-            id="usernameIn"
-            class="form-control"
-            placeholder="Username"
-          />
-          <input
-            type="text"
-            id="password"
-            class="form-control"
-            placeholder="Password"
-          />
-          <hr />
-          <button class="btn btn-outline-primary" onclick="assignAdmin()">
-            Assign admin
-          </button>
-          <button class="btn btn-outline-danger" onclick="removeAdmin()">
-            Remove admin
-          </button>
-        </div>
-        <div class="form-group" id="newSport">
-          <h4>New sport</h4>
-          <input
-            type="text"
-            id="sportName"
-            class="form-control"
-            placeholder="Name"
-          />
-          <input
-            type="number"
-            id="minPlayers"
-            class="form-control"
-            placeholder="Min players"
-          />
-          <input
-            type="number"
-            id="maxPlayers"
-            class="form-control"
-            placeholder="Max players"
-          />
-          <hr />
-          <h4>suggested sports</h4>
-        </div>
-        <div id="location-suggestions"></div>
-        <div id="sport-suggestion"></div>
-      </div>
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
         <div id="username" class="navbar-brand"></div>
         <button
@@ -124,8 +44,8 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <button class="nav-link btn" onclick="toMain()">Main</button>
+            <li class="nav-item active">
+              <button class="nav-link btn">Main</button>
             </li>
             <li class="nav-item">
               <button class="nav-link btn" onclick="toProfile()">
@@ -138,7 +58,7 @@
             <li class="nav-item">
               <button class="nav-link btn" onclick="toChat()">Chat</button>
             </li>
-            <li id="adminPage" class="nav-item active">
+            <li id="adminPage" class="nav-item invis">
               <button class="nav-link btn" onclick="toAdmin()">To Admin</button>
             </li>
             <li class="nav-item dropdown">
@@ -154,8 +74,12 @@
                 Other people
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item btn" onclick="goToFriends()">My friends</a>
-                <a class="dropdown-item btn" onclick="goToBlocked()">Blocked people</a>
+                <a class="dropdown-item btn" onclick="goToFriends()"
+                  >My friends</a
+                >
+                <a class="dropdown-item btn" onclick="goToBlocked()"
+                  >Blocked people</a
+                >
                 <div class="dropdown-divider"></div>
                 <div id="searchPeople">
                   <div class="form-inline my-2 my-lg-0">
@@ -177,14 +101,7 @@
                     <hr />
                   </div>
                 </div>
-                <div id="Results">
-                  <button
-                    id="ResButt"
-                    class="invis"
-                    onclick="goToPerson()"
-                  ></button>
-                  <div id="DocId" class="invis"></div>
-                </div>
+                <div id="Results"></div>
               </div>
             </li>
           </ul>
@@ -234,9 +151,9 @@
       firebase.analytics();
     </script>
 
-    <script src="../search/search.js"></script>
-    <link rel="stylesheet" type="text/css" href="../search/search.css" />
+    <script src="../../Search_Special/search_special.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../search/search.css" />
 
-    <script src="./admin.js" defer></script>
+    <script src="..\user-suggested-field\user-suggested-field.js" defer></script>
   </body>
 </html>

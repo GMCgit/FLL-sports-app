@@ -6,6 +6,10 @@ username.innerHTML = sessionStorage.getItem("username");
 db.collection("admins")
   .doc(sessionStorage.getItem("DocName"))
   .get()
+  .catch(function(error) {
+    alert("something is wrong")
+    window.location = "../mainPage/main.html";
+  })
   .then((doc) => {
     if (doc.data().username !== sessionStorage.getItem("username")) {
       window.location = "../mainPage/main.html";
@@ -13,9 +17,49 @@ db.collection("admins")
       window.location = "../mainPage/main.html";
     }
   })
-  .catch((err) => {
+  .catch(function(error) {
     window.location = "../mainPage/main.html";
   });
+
+function toChat() {
+  window.location = "../chat/chat.html";
+}
+
+let pref = JSON.parse(sessionStorage.getItem("pref"));
+
+if (pref.dark) {
+  darkMode(true);
+}
+
+function darkMode(toDark) {
+  if (toDark) {
+    document.getElementById("adminBG").classList.add("dark");
+    document.getElementById("content").classList.add("darkTxt");
+  } else {
+    document.getElementById("adminBG").classList.remove("dark");
+    document.getElementById("content").classList.remove("darkTxt");
+  }
+
+  if (toDark) {
+    document.getElementById("navbar").classList.remove("navbar-light");
+    document.getElementById("navbar").classList.remove("bg-light");
+    document.getElementById("navbar").classList.add("navbar-dark");
+    document.getElementById("navbar").classList.add("bg-dark");
+  } else {
+    document.getElementById("navbar").classList.remove("navbar-dark");
+    document.getElementById("navbar").classList.remove("bg-dark");
+    document.getElementById("navbar").classList.add("navbar-light");
+    document.getElementById("navbar").classList.add("bg-light");
+  }
+  if (toDark) {
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.add("dark-bg");
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.add("darkTxt");
+  }
+}
 
 db.collection("users")
   .get()
@@ -37,6 +81,46 @@ db.collection("users")
           "userCount"
         ).innerHTML = `There are <div class="userCount">${counter}</div> users and <div class="userCount">${adminCounter}</div> admins`;
       });
+  });
+
+let object = document.getElementById("location-suggestions");
+db.collection("map_suggestions")
+  .get()
+  .then((querySearch) => {
+    querySearch.forEach((doc) => {
+      if (doc.id != "Gdje je dugi spoj?") {
+        let child = document.createElement("button");
+        child.innerHTML = doc.data().name;
+        child.className = "btn btn-outline-info";
+        child.style = "font-weight: bold;";
+        child.onclick = function () {
+          sessionStorage.setItem("suggestion-doc_id", doc.id);
+          window.location =
+            "../adminPage/user-suggested-field/user-suggested-field.html";
+        };
+        object.appendChild(child);
+      }
+    });
+  });
+
+let sport_object = document.getElementById("sport-suggestion");
+db.collection("sport_suggestions")
+  .get()
+  .then((querySearch) => {
+    querySearch.forEach((doc) => {
+      if (doc.id != "ππππππππππππππππππππππππππππππππππππππππππππππππππ") {
+        let child = document.createElement("button");
+        child.innerHTML = doc.data().name;
+        child.className = "btn btn-outline-info";
+        child.style = "font-weight: bold;";
+        child.onclick = function () {
+          sessionStorage.setItem("suggestion-doc-id", doc.id);
+          window.location =
+            "../adminPage/user-suggested-sport/user-suggested-sport.html";
+        };
+        sport_object.appendChild(child);
+      }
+    });
   });
 
 function toProfile() {
@@ -75,7 +159,7 @@ function newField() {
       Sport: sport.value,
       easy: [],
       medium: [],
-      hard: []
+      hard: [],
     });
     lng.value = "";
     lat.value = "";
@@ -142,9 +226,9 @@ function newSport() {
   let sport = {
     name: document.getElementById("sportName").value,
     min: parseInt(document.getElementById("minPlayers").value),
-    max: parseInt(document.getElementById("maxPlayers").value)
-  }
-  
+    max: parseInt(document.getElementById("maxPlayers").value),
+  };
+
   db.collection("sports").add(sport);
 
   document.getElementById("minPlayers").value = "";
