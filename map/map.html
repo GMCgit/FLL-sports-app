@@ -226,13 +226,24 @@
             map: map,
             icon: `./icons/${feature.sport}.png`,
           });
-          let contentString =
-            "<div>" +
-            '<div id="siteNotice">' +
-            "</div>" +
-            `<h3 id="firstHeading" class="firstHeading">${feature.name}</h3>` +
-            `<h5 id="sport">${feature.sport}</h5>` +
-            "</div>";
+          let contentString;
+          if (pref.dark) {
+            contentString =
+              "<div>" +
+              '<div id="siteNotice">' +
+              "</div>" +
+              `<h3 id="firstHeading" class="firstHeading" style="color:black;">${feature.name}</h3>` +
+              `<h5 id="sport" style="color:black;">${feature.sport}</h5>` +
+              "</div>";
+          } else {
+            contentString =
+              "<div>" +
+              '<div id="siteNotice">' +
+              "</div>" +
+              `<h3 id="firstHeading" class="firstHeading">${feature.name}</h3>` +
+              `<h5 id="sport">${feature.sport}</h5>` +
+              "</div>";
+          }
           const infowindow = new google.maps.InfoWindow({
             content: contentString,
           });
@@ -331,7 +342,6 @@
                     msgs: [],
                   });
                 }
-                document.getElementById("chat").classList.remove("invis");
               });
           });
       }

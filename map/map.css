@@ -4,6 +4,7 @@ body {
   background-size: cover;
   background-position: center;
   overflow: auto;
+  overflow-x: hidden;
 }
 
 #navbar {

@@ -81,8 +81,8 @@ function add_field() {
                     Sport: document.getElementById("sports").value,
                     name: document.getElementById("name").value,
                     position: JSON.stringify({
-                      lat: document.getElementById("lat").value,
-                      lng: document.getElementById("lng").value,
+                      lat: Number(document.getElementById("lat").value),
+                      lng: Number(document.getElementById("lng").value),
                     }),
                     easy: [],
                     medium: [],
@@ -116,8 +116,10 @@ function add_field() {
             .add({
               Sport: sport,
               name: name,
-              position:
-                '{"lat":' + position.lat + ',"lng":' + position.lng + "}",
+              position: JSON.stringify({
+                lat: Number(document.getElementById("lat").value),
+                lng: Number(document.getElementById("lng").value),
+              }),
               easy: [],
               medium: [],
               hard: [],

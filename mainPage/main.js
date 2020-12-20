@@ -117,6 +117,13 @@ function sport_suggest() {
   }
 }
 
+function test(e) {
+  if (e.keyCode === 13) {
+    e.preventDefault()
+    console.log("π")
+  }
+}
+
 function newInvite() {
   if (hasInvite == false) {
     db.collection("invites")

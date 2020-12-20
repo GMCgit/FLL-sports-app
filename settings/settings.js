@@ -73,4 +73,23 @@ function darkMode(toDark) {
     document.getElementById("settingsBg").classList.remove("dark");
     document.getElementById("settings").classList.remove("darkTxt");
   }
+  if (toDark) {
+    document.getElementById("navbar").classList.remove("navbar-light");
+    document.getElementById("navbar").classList.remove("bg-light");
+    document.getElementById("navbar").classList.add("navbar-dark");
+    document.getElementById("navbar").classList.add("bg-dark");
+  } else {
+    document.getElementById("navbar").classList.remove("navbar-dark");
+    document.getElementById("navbar").classList.remove("bg-dark");
+    document.getElementById("navbar").classList.add("navbar-light");
+    document.getElementById("navbar").classList.add("bg-light");
+  }
+  if (toDark) {
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.add("dark-bg");
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.add("darkTxt");
+  }
 }
