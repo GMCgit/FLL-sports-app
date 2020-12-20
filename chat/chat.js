@@ -7,6 +7,10 @@ if (sessionStorage.getItem("admin") == "true") {
   document.getElementById("adminPage").classList.remove("invis");
 }
 
+if (sessionStorage.getItem("chatCh") !== undefined) {
+  sessionStorage.removeItem("chatCh");
+}
+
 let pref = JSON.parse(sessionStorage.getItem("pref"));
 
 if (pref.dark) {
