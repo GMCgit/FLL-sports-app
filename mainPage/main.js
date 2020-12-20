@@ -26,6 +26,10 @@ if (pref.dark) {
   darkMode(true);
 }
 
+function toSportpedia() {
+  window.location = "../sportpedia/sportpedia.html";
+}
+
 function darkMode(toDark) {
   if (toDark) {
     document.getElementById("mainBg").classList.add("dark");
@@ -77,24 +81,37 @@ function sport_suggest() {
   let min = document.getElementById("min").value;
   if (
     name !== "" &&
-    max !== "" &&
     min !== "" &&
     min > 0 &&
-    max >= min &&
     min % 1 == 0 &&
     max % 1 == 0 &&
     min < 50
   ) {
-    db.collection("sport_suggestions")
-      .add({
-        name: name,
-        max: max,
-        min: min,
-        comment: document.getElementById("comment").value,
-        user_doc: sessionStorage.getItem("DocName"),
-        user_name: sessionStorage.getItem("name"),
-      })
-      .then(alert("succes"));
+    if (max !== "") {
+      if (max >= min) {
+        db.collection("sport_suggestions")
+          .add({
+            name: name,
+            max: max,
+            min: min,
+            comment: document.getElementById("comment").value,
+            user_doc: sessionStorage.getItem("DocName"),
+            user_name: sessionStorage.getItem("name"),
+          })
+          .then(alert("succes"));
+      } else {alert("no")}
+    } else {
+        db.collection("sport_suggestions")
+          .add({
+            name: name,
+            max: max,
+            min: min,
+            comment: document.getElementById("comment").value,
+            user_doc: sessionStorage.getItem("DocName"),
+            user_name: sessionStorage.getItem("name"),
+          })
+          .then(alert("succes"));
+        }
   } else {
     alert("No");
   }
