@@ -1,0 +1,58 @@
+body {
+  background-image: url("./images/main.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+#navbar {
+  border-radius: 5px;
+}
+
+#searchPeople {
+  margin-left: 5px;
+}
+
+.content {
+  width: 100vw;
+  height: 100vh;
+}
+
+.invis {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+
+.sportpediaBg {
+  position: absolute;
+  width: 70vw;
+  height: 80vh;
+  background-color: aliceblue;
+  opacity: 80%;
+  border-radius: 5px;
+  left: 15vw;
+  top: 10vh;
+}
+
+#sportpedia {
+  position: absolute;
+  width: 70vw;
+  height: 80vh;
+  border-radius: 5px;
+  left: 15vw;
+  top: 10vh;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.button {
+  width: calc(70vw*0.35);
+  margin-top: 0.5vh;
+  margin-bottom: 0.5vh;
+}

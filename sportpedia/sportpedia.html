@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="sportpedia.css" />
+  </head>
+  <body>
+    <div id="content" class="content darkTxt">
+      <div id="sportpediaBg" class="sportpediaBg"></div>
+      <div id="sportpedia">
+        <div id="sportsSelector"></div>
+        <div id="sportData"></div>
+      </div>
+      <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div id="username" class="navbar-brand"></div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <button class="nav-link btn">Main</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link btn" onclick="toProfile()">
+                My Profile <span class="sr-only">(current)</span>
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link btn" onclick="toMap()">Map</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link btn" onclick="toChat()">Chat</button>
+            </li>
+            <li class="nav-item active">
+              <button class="nav-link btn">Sportpedia</button>
+            </li>
+            <li id="adminPage" class="nav-item invis">
+              <button class="nav-link btn" onclick="toAdmin()">To Admin</button>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Other people
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item btn" onclick="goToFriends()"
+                  >My friends</a
+                >
+                <a class="dropdown-item btn" onclick="goToBlocked()"
+                  >Blocked people</a
+                >
+                <div class="dropdown-divider"></div>
+                <div id="searchPeople">
+                  <div class="form-inline my-2 my-lg-0">
+                    <input
+                      class="form-control mr-sm-2"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                      id="userEntered"
+                      onkeypress="searchPeople()"
+                    />
+                    <button
+                      class="btn btn-outline-success my-2 my-sm-0"
+                      type="submit"
+                      onclick="searchPeople()"
+                    >
+                      Search
+                    </button>
+                    <hr />
+                  </div>
+                </div>
+                <div id="Results"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+      let firebaseConfig = {
+        apiKey: "AIzaSyCM2sEUC8IruO3FAd5AczvgxfqIUZ5ayoM",
+        authDomain: "fll-sports-app.firebaseapp.com",
+        databaseURL: "https://fll-sports-app.firebaseio.com",
+        projectId: "fll-sports-app",
+        storageBucket: "fll-sports-app.appspot.com",
+        messagingSenderId: "984650261585",
+        appId: "1:984650261585:web:75826e5684ec5ee71f8470",
+        measurementId: "G-TH76ZB69PB",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script src="../search/search.js"></script>
+    <link rel="stylesheet" type="text/css" href="../search/search.css" />
+
+    <script src="./sportpedia.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../darkMode.css" />
+  </body>
+</html>
