@@ -95,6 +95,7 @@ db.collection("sports")
           max: sport.data().max,
           desc: sport.data().description,
           id: sport.id,
+          reviews: JSON.parse(sport.data().reviews),
         })
       );
       child.onclick = function (e) {
@@ -109,8 +110,87 @@ function selectSport(elm) {
   let sportData = JSON.parse(elm.getAttribute("data"));
   let textArea = document.getElementById("sportData");
 
-  textArea.innerHTML = `<h1>${sportData.name}</h1><hr /><h3>Max: ${sportData.max}<br>Min: ${sportData.min}</h3>`
+  textArea.innerHTML = `<h1>${sportData.name}</h1><hr />`;
+
+  textArea.innerHTML += `<div id="status"></div>
+  <div id="ratingForm">
+      <fieldset class="rating">
+          <legend>Please rate:</legend>
+          <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+          <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+          <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+          <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+          <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+      </fieldset>
+      <div class="clearfix"></div>
+      <button class="submit clearfix btn btn-outline-success" onclick="submitReview()">Submit</button>
+  </div> <hr />`;
+
+  textArea.innerHTML += `<h3 id="ratingRes">This sport has avrage review of ${sportData.reviews.avg} from ${sportData.reviews.reviews.length} user</h3><hr>`;
+
+  textArea.innerHTML += `<h3>Max: ${sportData.max}<br>Min: ${sportData.min}</h3>`;
   if (sportData.desc !== "") {
-    textArea.innerHTML += `<hr /><div>Description: ${sportData.desc}</div>`
+    textArea.innerHTML += `<hr /><div>Description: ${sportData.desc}</div>`;
   }
+  textArea.innerHTML += `<div class="invis" id="sportId">${sportData.id}</div>`;
 }
+function submitReview() {
+  db.collection("sports")
+    .doc(document.getElementById("sportId").innerHTML)
+    .get()
+    .then((doc) => {
+      let reviews = JSON.parse(doc.data().reviews);
+      let indexOf = -1;
+      reviews.reviews.forEach((review) => {
+        if (review.owner == sessionStorage.getItem("DocName")) {
+          indexOf = reviews.reviews.indexOf(review);
+        }
+      });
+
+      let value = document.getElementById("star5").checked
+        ? 5
+        : document.getElementById("star4").checked
+        ? 4
+        : document.getElementById("star3").checked
+        ? 3
+        : document.getElementById("star2").checked
+        ? 2
+        : document.getElementById("star1").checked
+        ? 1
+        : false;
+
+      if (value == false) {
+        return alert("You need to select a value");
+      }
+
+      let reviewsArr = reviews.reviews;
+
+      if (indexOf == -1) {
+        reviewsArr.push({
+          owner: sessionStorage.getItem("DocName"),
+          value: value,
+        });
+      } else {
+        reviewsArr[indexOf] = {
+          owner: sessionStorage.getItem("DocName"),
+          value: value,
+        };
+      }
+
+      db.collection("sports")
+        .doc(document.getElementById("sportId").innerHTML)
+        .update({
+          reviews: JSON.stringify({
+            avg: getNewAvg(reviewsArr),
+            reviews: reviewsArr
+          })
+        });
+      document.getElementById("ratingRes").innerHTML = `This sport has avrage review of ${getNewAvg(reviewsArr)} from ${reviewsArr.length} user`
+    });
+}
+
+let getNewAvg = (arr) => {
+  return arr.length > 1
+    ? arr.reduce((a, b) => a.value + b.value) / arr.length
+    : arr[0].value;
+};
