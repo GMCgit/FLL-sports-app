@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="admin.css" />
     <link rel="stylesheet" type="text/css" href="../darkMode.css" />
   </head>
-  <body style="overflow-y: auto;">
+  <body style="overflow-y: auto">
     <div id="content" class="content">
       <div id="adminBG" class="adminBG"></div>
       <div id="admin">
@@ -102,11 +102,25 @@
             class="form-control"
             placeholder="Max players"
           />
+          <button onclick="newSport()" class="btn btn-outline-primary">New sport</button>
           <hr />
           <h4>suggested sports</h4>
         </div>
         <div id="location-suggestions"></div>
         <div id="sport-suggestion"></div>
+        <hr>
+        <div id="fake-locations">
+          <input
+            type="number"
+            id="broj-random-lokacija"
+            class="form-control"
+            placeholder="random location add/remove"
+          />
+          <button class="btn btn-outline-primary"  onclick="add_random()"">Add random locations</button>
+          <button class="btn btn-outline-danger" onclick = "remove_random()">
+            Remove random locations
+          </button>
+        </div>
       </div>
       <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
         <div id="username" class="navbar-brand"></div>
@@ -154,8 +168,12 @@
                 Other people
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item btn" onclick="goToFriends()">My friends</a>
-                <a class="dropdown-item btn" onclick="goToBlocked()">Blocked people</a>
+                <a class="dropdown-item btn" onclick="goToFriends()"
+                  >My friends</a
+                >
+                <a class="dropdown-item btn" onclick="goToBlocked()"
+                  >Blocked people</a
+                >
                 <div class="dropdown-divider"></div>
                 <div id="searchPeople">
                   <div class="form-inline my-2 my-lg-0">

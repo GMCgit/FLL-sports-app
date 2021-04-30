@@ -34,8 +34,12 @@ function darkMode(toDark) {
     document.getElementById("navbar").classList.add("bg-light");
   }
   if (toDark) {
-    document.getElementsByClassName("dropdown-menu")[0].classList.add("dark-bg")
-    document.getElementsByClassName("dropdown-menu")[0].classList.add("darkTxt")
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.add("dark-bg");
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.add("darkTxt");
   }
 }
 
@@ -111,120 +115,108 @@ function joinMatch() {
     .get()
     .then((q) => {
       q.forEach((doc) => {
-        db.collection("users")
-          .doc(sessionStorage.getItem("DocName"))
-          .get()
-          .then((ybc) => {
-            if (difficulty == "easy") {
-              arr = doc.data().easy;
-            } else if (difficulty == "medium") {
-              arr = doc.data().medium;
-            } else if (difficulty == "hard") {
-              arr = doc.data().medium;
-            }
-            let arr2 = ybc.data().blocked;
-            arr.every((blockedP) => {
-              if (arr2.includes(blockedP)) {
-                ableToJoin = false;
-                return false;
+        if (doc.data().name == name) {
+          db.collection("users")
+            .doc(sessionStorage.getItem("DocName"))
+            .get()
+            .then((ybc) => {
+              if (difficulty == "easy") {
+                arr = doc.data().easy;
+              } else if (difficulty == "medium") {
+                arr = doc.data().medium;
+              } else if (difficulty == "hard") {
+                arr = doc.data().hard;
+              }
+              let arr2 = ybc.data().blocked;
+              arr.every((blockedP) => {
+                if (arr2.includes(blockedP)) {
+                  ableToJoin = false;
+                  return false;
+                }
+              });
+              if (ableToJoin == null) ableToJoin = true;
+            })
+            .then(() => {
+              if (ableToJoin == true) {
+                for (let i = 0; i < arr.length; i++) {
+                  db.collection("users")
+                    .doc(arr[i])
+                    .get()
+                    .then((tbl) => {
+                      let arr3 = tbl.data().blocked;
+                      if (arr3.includes(sessionStorage.getItem("DocName"))) {
+                        ableToJoin = false;
+                        itterated = true;
+                        i = arr.length;
+                      } else {
+                        if (i == arr.length - 1) {
+                          db.collection("users")
+                            .doc(sessionStorage.getItem("DocName"))
+                            .get()
+                            .then((c) => {
+                              if (c.data().inMatch == false) {
+                                let joiningObj = {
+                                  name: doc.data().name,
+                                  field: doc.id,
+                                  difficulty: difficulty,
+                                  sport: doc.data().Sport,
+                                };
+
+                                sessionStorage.setItem(
+                                  "fieldData",
+                                  JSON.stringify(joiningObj)
+                                );
+
+                                db.collection("users")
+                                  .doc(sessionStorage.getItem("DocName"))
+                                  .update({
+                                    inMatch: true,
+                                    fieldData: JSON.stringify(joiningObj),
+                                  });
+
+                                if (difficulty == "easy") {
+                                  let newArr = doc.data().easy || [];
+                                  newArr.push(
+                                    sessionStorage.getItem("DocName")
+                                  );
+                                  db.collection("fields").doc(doc.id).update({
+                                    easy: newArr,
+                                  });
+                                } else if (difficulty == "medium") {
+                                  let newArr = doc.data().medium || [];
+                                  newArr.push(
+                                    sessionStorage.getItem("DocName")
+                                  );
+                                  db.collection("fields").doc(doc.id).update({
+                                    medium: newArr,
+                                  });
+                                } else if (difficulty == "hard") {
+                                  let newArr = doc.data().hard || [];
+                                  newArr.push(
+                                    sessionStorage.getItem("DocName")
+                                  );
+                                  db.collection("fields").doc(doc.id).update({
+                                    hard: newArr,
+                                  });
+                                }
+                                return alert("Success!");
+                              } else {
+                                alert("You are already in a match");
+                              }
+                            });
+                        }
+                      }
+                    });
+                }
+                if (itterated) {
+                  alert("You can't join this match");
+                  itterated = true;
+                }
+              } else {
+                alert("You can't join this match");
               }
             });
-            if (ableToJoin == null) ableToJoin = true;
-          })
-          .then(() => {
-            if (ableToJoin == true) {
-              for (let i = 0; i < arr.length; i++) {
-                db.collection("users")
-                  .doc(arr[i])
-                  .get()
-                  .then((tbl) => {
-                    let arr3 = tbl.data().blocked;
-                    if (arr3.includes(sessionStorage.getItem("DocName"))) {
-                      ableToJoin = false;
-                      itterated = true;
-                      i = arr.length;
-                    } else {
-                      if (i == arr.length - 1) {
-                        db.collection("users")
-                          .doc(sessionStorage.getItem("DocName"))
-                          .get()
-                          .then((c) => {
-                            if (c.data().inMatch == false) {
-                              db.collection("fields")
-                                .get()
-                                .then((q) => {
-                                  q.forEach((doc) => {
-                                    if (doc.data().name == name) {
-                                      let joiningObj = {
-                                        name: doc.data().name,
-                                        field: doc.id,
-                                        difficulty: difficulty,
-                                        sport: doc.data().Sport,
-                                      };
-
-                                      sessionStorage.setItem(
-                                        "fieldData",
-                                        JSON.stringify(joiningObj)
-                                      );
-
-                                      db.collection("users")
-                                        .doc(sessionStorage.getItem("DocName"))
-                                        .update({
-                                          inMatch: true,
-                                          fieldData: JSON.stringify(joiningObj),
-                                        });
-
-                                      if (difficulty == "easy") {
-                                        let newArr = doc.data().easy || [];
-                                        newArr.push(
-                                          sessionStorage.getItem("DocName")
-                                        );
-                                        db.collection("fields")
-                                          .doc(doc.id)
-                                          .update({
-                                            easy: newArr,
-                                          });
-                                      } else if (difficulty == "medium") {
-                                        let newArr = doc.data().medium || [];
-                                        newArr.push(
-                                          sessionStorage.getItem("DocName")
-                                        );
-                                        db.collection("fields")
-                                          .doc(doc.id)
-                                          .update({
-                                            medium: newArr,
-                                          });
-                                      } else if (difficulty == "hard") {
-                                        let newArr = doc.data().hard || [];
-                                        newArr.push(
-                                          sessionStorage.getItem("DocName")
-                                        );
-                                        db.collection("fields")
-                                          .doc(doc.id)
-                                          .update({
-                                            hard: newArr,
-                                          });
-                                      }
-                                      return alert("Success!");
-                                    }
-                                  });
-                                });
-                            } else {
-                              alert("You are already in a match");
-                            }
-                          });
-                      }
-                    }
-                  });
-              }
-              if (!itterated) {
-                alert("You can't join this match");
-                itterated = true;
-              }
-            } else {
-              alert("You can't join this match");
-            }
-          });
+        }
       });
     });
 }

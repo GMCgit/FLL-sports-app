@@ -66,6 +66,7 @@ function add_sport() {
                     min: document.getElementById("min").value,
                     max: document.getElementById("max").value,
                     description: document.getElementById("description").value,
+                    reviews: `{"avg":0, "reviews":[]}`
                 }).catch(function(error) {
                   console.log(error)
                   console.log("Contact Bornaj (pi)")
@@ -90,7 +91,8 @@ function add_sport() {
         name: name,
         min: Number(min),
         max: Number(max),
-        description: description
+        description: description,
+        reviews: '{"avg":0,"reviews":[]}',
       }).then(() => {
         alert("succes")
         delete_suggestion()

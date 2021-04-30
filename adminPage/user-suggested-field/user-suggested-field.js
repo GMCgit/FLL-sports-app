@@ -87,6 +87,7 @@ function add_field() {
                     easy: [],
                     medium: [],
                     hard: [],
+                    real: true,
                   })
                   .catch(function (error) {
                     console.log(error);
@@ -123,6 +124,7 @@ function add_field() {
               easy: [],
               medium: [],
               hard: [],
+              real: true,
             })
             .then(() => {
               alert("succes");

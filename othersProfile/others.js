@@ -153,7 +153,7 @@ function addFriend() {
         }
       });
   } else {
-    alert("no");
+    alert("hm");
   }
 }
 
@@ -183,7 +183,7 @@ function addBlocked() {
       .then((check) => {
         let arr = check.data().friends;
         if (arr.includes(JSON.parse(sessionStorage.getItem("docId")).docId)) {
-          alert("no");
+          alert("Cannot block friends");
         } else {
           db.collection("users")
             .doc(sessionStorage.getItem("DocName"))

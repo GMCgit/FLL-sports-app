@@ -19,7 +19,16 @@ function LogIn() {
               sessionStorage.setItem("name", doc.data().name);
               sessionStorage.setItem("DocName", doc.id);
               sessionStorage.setItem("bio", doc.data().biography);
-              sessionStorage.setItem("pref", doc.data().pref);
+              if (doc.data().pref == undefined) {
+                db.collection("users")
+                  .doc(doc.id)
+                  .update({
+                    pref: JSON.stringify({ dark: false }),
+                  });
+                sessionStorage.setItem("pref", JSON.stringify({ dark: false }));
+              } else {
+                sessionStorage.setItem("pref", doc.data().pref);
+              }
               if (document.getElementById("Remeber").checked == true) {
                 localStorage.setItem("username", doc.data().username);
                 localStorage.setItem("password", doc.data().password);
@@ -85,8 +94,18 @@ if (
     .then(() => {
       db.collection("users")
         .doc(sessionStorage.getItem("DocName"))
-        .get().then((doc) => {
-          sessionStorage.setItem("pref", doc.data().pref);
+        .get()
+        .then((doc) => {
+          if (doc.data().pref == undefined) {
+            db.collection("users")
+              .doc(doc.id)
+              .update({
+                pref: JSON.stringify({ dark: false }),
+              });
+            sessionStorage.setItem("pref", JSON.stringify({ dark: false }));
+          } else {
+            sessionStorage.setItem("pref", doc.data().pref);
+          }
         })
         .then(() => {
           window.location = `../../mainPage/main.html`;

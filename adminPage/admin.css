@@ -24,9 +24,9 @@ body {
   position: absolute;
   opacity: 70%;
   width: 70vw;
-  height: 80vh;
+  height: 90vh;
   left: 15vw;
-  top: 10vh;
+  top: 7vh;
   border-radius: 5px;
 }
 
@@ -40,7 +40,7 @@ body {
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   text-align: center;
 }
 

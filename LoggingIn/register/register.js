@@ -25,6 +25,7 @@ function register() {
           inMatch: false,
           blocked: [],
           friends: [],
+          pref: '{"dark":true}',
         })
         .then((docRef) => {
           console.log("Success!");

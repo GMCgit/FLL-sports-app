@@ -6,8 +6,8 @@ username.innerHTML = sessionStorage.getItem("username");
 db.collection("admins")
   .doc(sessionStorage.getItem("DocName"))
   .get()
-  .catch(function(error) {
-    alert("something is wrong")
+  .catch(function (error) {
+    alert("something is wrong");
     window.location = "../mainPage/main.html";
   })
   .then((doc) => {
@@ -17,7 +17,7 @@ db.collection("admins")
       window.location = "../mainPage/main.html";
     }
   })
-  .catch(function(error) {
+  .catch(function (error) {
     window.location = "../mainPage/main.html";
   });
 
@@ -29,6 +29,45 @@ let pref = JSON.parse(sessionStorage.getItem("pref"));
 
 if (pref.dark) {
   darkMode(true);
+}
+
+function add_random() {
+  let n = document.getElementById("broj-random-lokacija").value;
+  if (n <= 0 || n % 1 != 0 || n >= 100) {
+    alert("no");
+  } else {
+    for (let i = 0; i < n; i++) {
+      db.collection("fields")
+        .add({
+          Sport: ["basketball", "hochsitz", "hunting", "cycling"][
+            Math.round(Math.random() * 3)
+          ],
+          name: "PHANTOM",
+          position: JSON.stringify({
+            lng: (Math.random() * (15.9907496 - 15.905845) + 15.905845),
+            lat: (Math.random() * (45.801212 - 45.770969) + 45.770969),
+          }),
+          easy: [],
+          medium: [],
+          hard: [],
+          real: false,
+        })
+        .then(() => {});
+    }
+  }
+  //window.location = "https://youtu.be/XqZsoesa55w?t=27";
+}
+
+function remove_random() {
+  db.collection("fields")
+    .get()
+    .then((q) => {
+      q.forEach((doc) => {
+        if (doc.data().real == false) {
+          db.collection("fields").doc(doc.id).delete()
+        }
+      });
+    });
 }
 
 function darkMode(toDark) {
@@ -227,6 +266,7 @@ function newSport() {
     name: document.getElementById("sportName").value,
     min: parseInt(document.getElementById("minPlayers").value),
     max: parseInt(document.getElementById("maxPlayers").value),
+    reviews: `{"avg":0, "reviews":[]}`
   };
 
   db.collection("sports").add(sport);

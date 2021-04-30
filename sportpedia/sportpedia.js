@@ -59,6 +59,10 @@ function darkMode(toDark) {
   }
 }
 
+function toMain() {
+  window.location = "../mainPage/main.html";
+}
+
 function toChat() {
   window.location = "../chat/chat.html";
 }
