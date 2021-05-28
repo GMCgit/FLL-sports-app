@@ -51,7 +51,7 @@ function add_sport() {
       .get()
       .then((querySearch) => {
         querySearch.forEach((doc) => {
-          if (doc.data().name == name && add) {
+          if (doc.data().name.toLowerCase() == name.toLowerCase() && add) {
             alert("that sport already exists");
             add = false;
             if (sessionStorage.getItem("update_button_added") == "false") {

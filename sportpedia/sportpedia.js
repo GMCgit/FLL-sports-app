@@ -79,6 +79,16 @@ function toAdmin() {
   window.location = "../adminPage/admin.html";
 }
 
+function goToFriends() {
+  sessionStorage.setItem("friend", true);
+  window.location = "../Friends-Blocked/Friends-blocked.html";
+}
+
+function goToBlocked() {
+  sessionStorage.setItem("friend", false);
+  window.location = "../Friends-Blocked/Friends-blocked.html";
+}
+
 db.collection("sports")
   .get()
   .then((q) => {
