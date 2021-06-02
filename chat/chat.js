@@ -3,6 +3,10 @@ const username = document.getElementById("username");
 
 username.innerHTML = sessionStorage.getItem("username");
 
+if (sessionStorage.getItem("DocName") == null || sessionStorage.getItem("username") == null || sessionStorage.getItem("pref") == null ||sessionStorage.getItem("admin") == null || sessionStorage.getItem("name") == null || sessionStorage.getItem("password") == null) {
+  alert("Something went wrong")
+}
+
 if (sessionStorage.getItem("admin") == "true") {
   document.getElementById("adminPage").classList.remove("invis");
 }
@@ -255,6 +259,9 @@ function newMsg(doc, playSound) {
 
       let name = document.createElement("div");
       name.innerHTML = msg.username;
+      if (msg.admin == "true") {
+        name.innerHTML+=" <div style='color:red'>[Admin]</div>"
+      }
       name.classList.add("name");
       child.appendChild(name);
 
@@ -311,6 +318,7 @@ function sendMsg() {
           user: sessionStorage.getItem("DocName"),
           username: sessionStorage.getItem("username"),
           msg: input,
+          admin: sessionStorage.getItem("admin")
         })
       );
       db.collection("chat").doc(doc.id).update({
