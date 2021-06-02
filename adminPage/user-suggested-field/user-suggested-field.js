@@ -7,6 +7,13 @@ if (sessionStorage.getItem("admin") == "true") {
   document.getElementById("adminPage").classList.remove("invis");
 }
 
+if (sessionStorage.getItem("DocName") == null || sessionStorage.getItem("username") == null || sessionStorage.getItem("pref") == null ||sessionStorage.getItem("admin") == null || sessionStorage.getItem("name") == null || sessionStorage.getItem("password") == null) {
+  alert("Something went wrong.")
+  localStorage.clear();
+  sessionStorage.clear();
+  window.location = "../index.html";
+}
+
 db.collection("map_suggestions")
   .doc(sessionStorage.getItem("suggestion-doc_id"))
   .get()
@@ -87,6 +94,9 @@ function add_field() {
                     easy: [],
                     medium: [],
                     hard: [],
+                    easyB: [],
+                    mediumB: [],
+                    hardB: [],
                     real: true,
                   })
                   .catch(function (error) {
@@ -124,6 +134,9 @@ function add_field() {
               easy: [],
               medium: [],
               hard: [],
+              easyB: [],
+              mediumB: [],
+              hardB: [],
               real: true,
             })
             .then(() => {

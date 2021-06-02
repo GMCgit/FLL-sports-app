@@ -15,6 +15,13 @@ if (otherObj.name == "") {
     });
 }
 
+if (sessionStorage.getItem("DocName") == null || sessionStorage.getItem("username") == null || sessionStorage.getItem("pref") == null ||sessionStorage.getItem("admin") == null || sessionStorage.getItem("name") == null || sessionStorage.getItem("password") == null) {
+  alert("Something went wrong.")
+  localStorage.clear();
+  sessionStorage.clear();
+  window.location = "../index.html";
+}
+
 let pref = JSON.parse(sessionStorage.getItem("pref"));
 
 if (pref.dark) {

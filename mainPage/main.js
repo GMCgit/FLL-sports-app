@@ -1,6 +1,13 @@
 let db = firebase.firestore();
 const username = document.getElementById("username");
 
+if (sessionStorage.getItem("DocName") == null || sessionStorage.getItem("username") == null || sessionStorage.getItem("pref") == null ||sessionStorage.getItem("admin") == null || sessionStorage.getItem("name") == null || sessionStorage.getItem("password") == null) {
+  alert("Something went wrong.")
+  localStorage.clear();
+  sessionStorage.clear();
+  window.location = "../index.html";
+}
+
 username.innerHTML = sessionStorage.getItem("username");
 let hasInvite = false;
 db.collection("invites")
